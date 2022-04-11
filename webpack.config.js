@@ -1,5 +1,5 @@
 const path = require("path");
-const entryPath = "09_Materialy_dodatkowe/01_React_Router/UseParamCards";
+const entryPath = "JS_1_String_adding_native_method";
 
 module.exports = {
   entry: `./${entryPath}/js/app.js`,
