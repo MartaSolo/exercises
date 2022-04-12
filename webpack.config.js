@@ -1,5 +1,5 @@
 const path = require("path");
-const entryPath = "JS_1_String_adding_native_method";
+const entryPath = "JS_2_Bubble_sort";
 
 module.exports = {
   entry: `./${entryPath}/js/app.js`,
