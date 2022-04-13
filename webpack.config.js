@@ -1,5 +1,5 @@
 const path = require("path");
-const entryPath = "JS_2_Bubble_sort";
+const entryPath = "JS_3_ShopModule";
 
 module.exports = {
   entry: `./${entryPath}/js/app.js`,
