@@ -1,21 +1,50 @@
 // https://github.com/h5bp/Front-end-Developer-Interview-Questions/blob/main/src/questions/coding-questions.md
 
 // Question: What is the value of foo?
-var foo = 10 + "20";
-console.log(foo); // 1020
+// var foo = 10 + "20";
+// console.log(foo); // 1020
+
+// ---------------------------------
 
 // Question: What will be the output of the code below?
 // console.log(0.1 + 0.2 == 0.3);
+// console.log((0.1 * 10 + 0.2 * 10) / 10 == 0.3);
+
+// ---------------------------------
 
 // Question: How would you make this work?
 // add(2, 5); // 7
 // add(2)(5); // 7
 
+// const add = (x, y) => {
+//   return x + y;
+// };
+// console.log(add(2, 5));
+
+// const add = (x) => {
+//   return (y) => {
+//     return x + y;
+//   };
+// };
+
+// console.log(add(2)(5));
+
+// ---------------------------------
+
 // Question: What value is returned from the following statement?
-// "i'm a lasagna hog".split("").reverse().join("");
+// console.log("i'm a lasagna hog".split("").reverse().join(""));
+
+// let text = "i'm a lasagna hog";
+// console.log(text.split("")); // ['i', "'", 'm', ' ', 'a', ' ', 'l', 'a', 's', 'a', 'g', 'n', 'a', ' ', 'h', 'o', 'g']
+// console.log(text.split("").reverse()); // ['g', 'o', 'h', ' ', 'a', 'n', 'g', 'a', 's', 'a', 'l', ' ', 'a', ' ', 'm', "'", 'i']
+// console.log(text.split("").reverse().join("")); // goh angasal a m'i
+
+// ---------------------------------
 
 // Question: What is the value of window.foo?
 // ( window.foo || ( window.foo = "bar" ) );
+
+// ---------------------------------
 
 // Question: What is the outcome of the two alerts below?
 // var foo = "Hello";
@@ -25,10 +54,14 @@ console.log(foo); // 1020
 // })();
 // alert(foo + bar);
 
+// ---------------------------------
+
 // Question: What is the value of foo.length?
 // var foo = [];
 // foo.push(1);
 // foo.push(2);
+
+// ---------------------------------
 
 // Question: What is the value of foo.x?
 // var foo = {n: 1};
@@ -43,6 +76,8 @@ console.log(foo); // 1020
 //   console.log('three');
 // })
 // console.log('four');
+
+// ---------------------------------
 
 // Question: What is the difference between these four promises?
 // doSomething().then(function () {
@@ -64,6 +99,8 @@ console.log(foo); // 1020
 
 // console.log("a defined? " + (typeof a !== 'undefined'));
 // console.log("b defined? " + (typeof b !== 'undefined'));
+
+// ---------------------------------
 
 // Question: Consider the two functions below. Will they both return the same thing? Why or why not?
 // function foo1()
