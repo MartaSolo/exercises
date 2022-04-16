@@ -43,16 +43,22 @@
 
 // Question: What is the value of window.foo?
 // ( window.foo || ( window.foo = "bar" ) );
+// console.log(window.foo || (window.foo = "bar"));
+
+// console.log(window);
+// console.log(window.foo);
+// console.log((window.foo = "bar"));
+// console.log(window.foo); // bar
 
 // ---------------------------------
 
 // Question: What is the outcome of the two alerts below?
 // var foo = "Hello";
-// (function() {
+// (function () {
 //   var bar = " World";
 //   alert(foo + bar);
 // })();
-// alert(foo + bar);
+// alert(foo + bar); // Uncaught ReferenceError: bar is not defined
 
 // ---------------------------------
 
@@ -60,13 +66,28 @@
 // var foo = [];
 // foo.push(1);
 // foo.push(2);
+// console.log(foo.length);  // 2
 
 // ---------------------------------
 
 // Question: What is the value of foo.x?
-// var foo = {n: 1};
-// var bar = foo;
-// foo.x = foo = {n: 2};
+var foo = { n: 1 }; // {n: 1}
+var bar = foo; // {n: 1}
+foo.x = foo = { n: 2 }; // {n: 2}
+
+console.log(foo);
+console.log(foo.x); // undefined
+console.log((foo.x = foo)); // {n: 1, x: {…}}
+console.log((foo = { n: 2 })); //{n: 2}
+
+// foo.x = foo = { n: 2 };
+// (foo.x = (foo = { n: 2 }));
+console.log((foo.x = foo = { n: 2 }));
+console.log(foo.x);
+console.log(bar);
+
+// ---------------------------------
+
 // Question: What does the following code print?
 // console.log('one');
 // setTimeout(function() {
@@ -91,6 +112,8 @@
 // doSomething().then(doSomethingElse());
 
 // doSomething().then(doSomethingElse);
+
+// ---------------------------------
 
 // Question: What will the code below output to the console and why?
 // (function(){
