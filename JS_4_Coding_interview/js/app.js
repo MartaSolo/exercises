@@ -140,18 +140,149 @@
 // ---------------------------------
 
 // // Question: Consider the two functions below. Will they both return the same thing? Why or why not?
-function foo1() {
-  return {
-    bar: "hello",
-  };
-}
+// function foo1() {
+//   return {
+//     bar: "hello",
+//   };
+// }
 
-function foo2() {
-  return;
-  {
-    bar: "hello";
-  }
-}
+// function foo2() {
+//   return;
+//   {
+//     bar: "hello";
+//   }
+// }
 
-console.log(foo1());
-console.log(foo2());
+// console.log(foo1());
+// console.log(foo2());
+
+// ---------------------------------
+
+// What will the code below output to the console and why?
+
+// var myObject = {
+//   foo: "bar",
+//   func: function () {
+//     var self = this;
+//     console.log("outer func: this.foo = " + this.foo); // outer func: this.foo = bar
+//     console.log("outer func: self.foo = " + self.foo); // outer func: self.foo = bar
+
+//     (function () {
+//       console.log("inner func: this.foo = " + this.foo); // inner func: this.foo = undefined
+//       console.log("inner func: self.foo = " + self.foo); // inner func: self.foo = bar
+//     })();
+//   },
+// };
+// myObject.func();
+
+// ---------------------------------
+
+// Consider the following code snippet:
+// (a) What gets logged to the console when the user clicks on "Button 4" and why?
+// (b) Provide one or more alternate implementations that will work as expected.
+
+// for (var i = 0; i < 5; i++) {
+//   var btn = document.createElement("button");
+//   btn.appendChild(document.createTextNode("Button " + i));
+//   btn.addEventListener("click", function () {
+//     console.log(i);
+//   });
+//   document.body.appendChild(btn);
+// }
+
+// option 1
+// for (var i = 0; i < 5; i++) {
+//   var btn = document.createElement("button");
+//   btn.appendChild(document.createTextNode("Button " + i));
+//   btn.addEventListener(
+//     "click",
+//     (function (i) {
+//       return function () {
+//         console.log(i);
+//       };
+//     })(i)
+//   );
+//   document.body.appendChild(btn);
+// }
+
+// option 2
+// for (var i = 0; i < 5; i++) {
+//   var btn = document.createElement("button");
+//   btn.appendChild(document.createTextNode("Button " + i));
+//   btn.addEventListener("click", function (e) {
+//     console.log(e.target.innerText.charAt(7));
+//   });
+//   document.body.appendChild(btn);
+// }
+
+// ---------------------------------
+
+// What will the code below output to the console and why?
+// var arr1 = "john".split("");
+// // arr1: ['j', 'o', 'h', 'n']
+// console.log("arr1", arr1);
+
+// var arr2 = arr1.reverse();
+// // arr2:  ['n', 'h', 'o', 'j']
+// // arr1: ['n', 'h', 'o', 'j']
+// console.log("arr2", arr2);
+// console.log("arr1", arr1);
+
+// var arr3 = "jones".split("");
+// // arr3: ['j', 'o', 'n', 'e', 's']
+// console.log("arr3", arr3);
+
+// arr2.push(arr3);
+// console.log("arr2", arr2);
+// // arr2: [n,h,o,j, [j,o,n,e,s]]
+// console.log("arr1", arr1);
+// // arr1: [n,h,o,j, [j,o,n,e,s]]
+
+// console.log("array 1: length=" + arr1.length + " last=" + arr1.slice(-1));
+// // array 1: length=5 last=j,o,n,e,s
+// console.log("array 2: length=" + arr2.length + " last=" + arr2.slice(-1));
+// // array 2: length=5 last=j,o,n,e,s
+
+// ---------------------------------
+// What will the code below output to the console and why?
+
+// console.log(1 + "2" + "2"); // 122
+// console.log(1 + +"2" + "2"); // 32   ??
+// console.log(1 + -"1" + "2"); //  02
+// console.log(+"1" + "1" + "2"); // 112
+// console.log("A" - "B" + "2"); // NaN2
+// console.log("A" - "B" + 2); // NaN
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
+
+// ---------------------------------
