@@ -71,32 +71,37 @@
 // ---------------------------------
 
 // Question: What is the value of foo.x?
-var foo = { n: 1 }; // {n: 1}
-var bar = foo; // {n: 1}
-foo.x = foo = { n: 2 }; // {n: 2}
+// var foo = { n: 1 }; // {n: 1}
+// var bar = foo; // {n: 1}
+// foo.x = foo = { n: 2 }; // {n: 2}
 
-console.log(foo);
-console.log(foo.x); // undefined
-console.log((foo.x = foo)); // {n: 1, x: {…}}
-console.log((foo = { n: 2 })); //{n: 2}
+// console.log(foo);  // {n: 2}
+// console.log(foo.x); // undefined
+// console.log((foo.x = foo)); // {n: 1, x: {…}}
+// console.log((foo = { n: 2 })); //{n: 2}
 
-// foo.x = foo = { n: 2 };
-// (foo.x = (foo = { n: 2 }));
-console.log((foo.x = foo = { n: 2 }));
-console.log(foo.x);
-console.log(bar);
+// // foo.x = foo = { n: 2 };
+// // (foo.x = (foo = { n: 2 }));
+// console.log((foo.x = foo = { n: 2 }));
+// console.log(foo.x);
+// console.log(bar);
 
 // ---------------------------------
 
 // Question: What does the following code print?
-// console.log('one');
-// setTimeout(function() {
-//   console.log('two');
+// console.log("one");
+// setTimeout(function () {
+//   console.log("two");
 // }, 0);
-// Promise.resolve().then(function() {
-//   console.log('three');
-// })
-// console.log('four');
+// Promise.resolve().then(function () {
+//   console.log("three");
+// });
+// console.log("four");
+
+// one
+// four
+// three
+// two
 
 // ---------------------------------
 
@@ -116,27 +121,37 @@ console.log(bar);
 // ---------------------------------
 
 // Question: What will the code below output to the console and why?
-// (function(){
-//   var a = b = 3;
+// (function () {
+//   var a = (b = 3);
 // })();
+// console.log("a defined? " + (typeof a !== "undefined"));
+// // a defined? false
+// console.log("b defined? " + (typeof b !== "undefined"));
+// // b defined? true
 
-// console.log("a defined? " + (typeof a !== 'undefined'));
-// console.log("b defined? " + (typeof b !== 'undefined'));
+// (function () {
+//   var a = (b = 3);
+//   console.log("a: " + a); // 3
+//   console.log("b: " + b); // 3
+// })();
+// console.log("a: " + a); // undefined
+// console.log("b: " + b); // 3
 
 // ---------------------------------
 
-// Question: Consider the two functions below. Will they both return the same thing? Why or why not?
-// function foo1()
-// {
-//   return {
-//       bar: "hello"
-//   };
-// }
+// // Question: Consider the two functions below. Will they both return the same thing? Why or why not?
+function foo1() {
+  return {
+    bar: "hello",
+  };
+}
 
-// function foo2()
-// {
-//   return
-//   {
-//       bar: "hello"
-//   };
-// }
+function foo2() {
+  return;
+  {
+    bar: "hello";
+  }
+}
+
+console.log(foo1());
+console.log(foo2());
