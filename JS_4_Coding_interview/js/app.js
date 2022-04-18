@@ -255,7 +255,31 @@
 
 // ---------------------------------
 
+// What will be the output when the following code is executed? Explain.
+// console.log(false == "0"); // true
+// console.log(false === "0"); // false
+
 // ---------------------------------
+// The following recursive code will cause a stack overflow if the array list is too large. How can you fix this and still retain the recursive pattern?
+
+var list = readHugeList();
+var nextListItem = function () {
+  var item = list.pop();
+  if (item) {
+    // process the list item...
+    nextListItem();
+  }
+};
+
+// answer:
+var list = readHugeList();
+var nextListItem = function () {
+  var item = list.pop();
+  if (item) {
+    // process the list item...
+    setTimeout(nextListItem, 0);
+  }
+};
 
 // ---------------------------------
 
