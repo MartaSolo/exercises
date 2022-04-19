@@ -206,25 +206,45 @@
 
 // ----------------------------------------
 
-// const text = "aaaabbcccd";
+// Get unique characters from a string.
 
-const count = (string) => {
-  const arr = [...string];
-  const arrUnique = [];
-  console.log(arrUnique);
-  let count = 1;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === arr[i + 1]) {
-      count++;
-      console.log(arrUnique);
-    }
-    arrUnique.push(arr[i]);
-    arrUnique.push(count);
-  }
-  return arrUnique;
+const getUniqueChar = (inputString) => {
+  const array = [...inputString];
+  const uniqueArray = array.filter((el, index) => {
+    console.log(
+      "array.indexO(el)",
+      array.indexOf(el) + " el:",
+      el + " index",
+      index
+    );
+    // console.log("index", index);
+    return array.indexOf(el) === index;
+  });
+  return uniqueArray.join("");
 };
 
-console.log(count(text));
+const text = "aaaabbcccd";
+console.log(getUniqueChar(text));
+
+// const text = "aaaabbcccd";
+
+// const count = (string) => {
+//   const arr = [...string];
+//   const arrUnique = [];
+//   console.log(arrUnique);
+//   let count = 1;
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] === arr[i + 1]) {
+//       count++;
+//       console.log(arrUnique);
+//     }
+//     arrUnique.push(arr[i]);
+//     arrUnique.push(count);
+//   }
+//   return arrUnique;
+// };
+
+// console.log(count(text));
 // ----------------------------------------
 // const uniqueCount = [
 //   "a",
@@ -251,9 +271,30 @@ console.log(count(text));
 // });
 
 // console.log(count);
+// console.log(String(count));
+// console.log(JSON.stringify(count));
 // ----------------------------------------
 
+// Counting frequency of characters in a string using JavaScript. return value - object
+
+// function getFrequency(string) {
+//   var freq = {};
+//   for (var i = 0; i < string.length; i++) {
+//     var character = string.charAt(i);
+//     if (freq[character]) {
+//       freq[character]++;
+//     } else {
+//       freq[character] = 1;
+//     }
+//   }
+//   return freq;
+// }
+
+// console.log(getFrequency("Indivisibilities"));
+
 // ----------------------------------------
+
+// Mając string „aaabbccccdd” zwróć string „a3b2c4d2”.
 
 // ----------------------------------------
 
