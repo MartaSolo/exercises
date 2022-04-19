@@ -208,71 +208,94 @@
 
 // Get unique characters from a string.
 
-const getUniqueChar = (inputString) => {
-  const array = [...inputString];
-  const uniqueArray = array.filter((el, index) => {
-    console.log(
-      "array.indexO(el)",
-      array.indexOf(el) + " el:",
-      el + " index",
-      index
-    );
-    // console.log("index", index);
-    return array.indexOf(el) === index;
-  });
-  return uniqueArray.join("");
-};
-
-const text = "aaaabbcccd";
-console.log(getUniqueChar(text));
-
-// const text = "aaaabbcccd";
-
-// const count = (string) => {
-//   const arr = [...string];
-//   const arrUnique = [];
-//   console.log(arrUnique);
-//   let count = 1;
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i] === arr[i + 1]) {
-//       count++;
-//       console.log(arrUnique);
-//     }
-//     arrUnique.push(arr[i]);
-//     arrUnique.push(count);
-//   }
-//   return arrUnique;
+// const getUniqueChar = (inputString) => {
+//   const array = [...inputString];
+//   const uniqueArray = array.filter((el, index) => {
+//     console.log(
+//       "array.indexO(el)",
+//       array.indexOf(el) + " el:",
+//       el + " index",
+//       index
+//     );
+//     return array.indexOf(el) === index;
+//   });
+//   return uniqueArray.join("");
 // };
 
-// console.log(count(text));
+// const text = "aaaabbcccd";
+// console.log(getUniqueChar(text));
+
 // ----------------------------------------
-// const uniqueCount = [
-//   "a",
-//   "b",
-//   "a",
-//   "c",
-//   "b",
-//   "a",
-//   "d",
-//   "b",
-//   "c",
-//   "f",
-//   "g",
-//   "h",
-//   "h",
-//   "h",
-//   "e",
-//   "a",
-// ];
-// let count = {};
+// Count Duplicate Values in an Array in JavaScript
 
-// uniqueCount.forEach((i) => {
-//   count[i] = ++count[i] || 1;
-// });
+// option 1
+// const countDuplicates = (array) => {
+//   let counts = {};
+//   array.forEach((el) => {
+//     return (counts[el] = counts[el] + 1 || 1);
+//   });
+//   return counts;
+// };
 
-// console.log(count);
-// console.log(String(count));
-// console.log(JSON.stringify(count));
+// const values = ["a", "b", "a", "c", "b", "a", "d"];
+// console.log(countDuplicates(values));
+// // {a: 3, b: 2, c: 1, d: 1}
+
+// option 2
+// const counter = (array) => {
+//   return array.reduce((total, letter) => {
+//     total[letter] ? total[letter]++ : (total[letter] = 1);
+//     return total;
+//   }, {});
+// };
+// console.log(counter(["a", "a", "b", "b", "b", "f", "f", "f", "r", "r"]));
+// // {a: 2, b: 3, f: 3, r: 2}
+
+// option 3
+
+// const getFrequency = (array) => {
+//   const frequency = {};
+//   for (let i = 0; i < array.length; i++) {
+//     let element = array[i];
+//     if (frequency[element]) {
+//       frequency[element]++;
+//     } else {
+//       frequency[element] = 1;
+//     }
+//   }
+//   return frequency;
+// };
+
+// const values = ["a", "b", "a", "c", "b", "a", "d"];
+// console.log(getFrequency(values));
+// {a: 3, b: 2, c: 1, d: 1}
+
+// ----------------------------------------
+
+// Mając string „aaabbccccdd” zwróć string „a3b2c4d2”.
+const text = "aaaabbcccd";
+
+const count = (string) => {
+  const arr = [...string];
+  const arrUnique = [];
+  console.log(arrUnique);
+  let count = 1;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === arr[i + 1]) {
+      count++;
+      // console.log(arrUnique);
+      // arrUnique.push(arr[i]);
+      // arrUnique.push(count);
+    } else {
+      count = 1;
+    }
+    arrUnique.push(arr[i]);
+    arrUnique.push(count);
+  }
+  return arrUnique;
+};
+console.log(count(text));
+
 // ----------------------------------------
 
 // Counting frequency of characters in a string using JavaScript. return value - object
@@ -291,10 +314,6 @@ console.log(getUniqueChar(text));
 // }
 
 // console.log(getFrequency("Indivisibilities"));
-
-// ----------------------------------------
-
-// Mając string „aaabbccccdd” zwróć string „a3b2c4d2”.
 
 // ----------------------------------------
 
