@@ -226,7 +226,7 @@
 // console.log(getUniqueChar(text));
 
 // ----------------------------------------
-// Count Duplicate Values in an Array in JavaScript
+// Count Duplicate Values in an Array in JavaScript. Return object.
 
 // option 1
 // const countDuplicates = (array) => {
@@ -272,38 +272,38 @@
 
 // ----------------------------------------
 
-// Mając string „aaabbccccdd” zwróć string „a3b2c4d2”.
-const text = "aaaabbcccd";
-
-const count = (string) => {
-  const arr = [...string];
-  const arrUnique = [];
-  console.log(arrUnique);
-  let count = 1;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === arr[i + 1]) {
-      count++;
-      // console.log(arrUnique);
-      // arrUnique.push(arr[i]);
-      // arrUnique.push(count);
-    } else {
-      count = 1;
-    }
-    arrUnique.push(arr[i]);
-    arrUnique.push(count);
-  }
-  return arrUnique;
-};
-console.log(count(text));
-
-// ----------------------------------------
-
 // Counting frequency of characters in a string using JavaScript. return value - object
 
-// function getFrequency(string) {
+// // option 1
+
+// const getFrequency = (string) => {
+//   const frequency = {};
+//   [...string].forEach((item) => {
+//     if (frequency[item]) {
+//       frequency[item]++;
+//     } else {
+//       frequency[item] = 1;
+//     }
+//   });
+//   return frequency;
+// };
+
+// //  option 1.1
+// const getFrequency = (string) => {
+//   const frequency = {};
+//   [...string].forEach((item) => {
+//     frequency[item] ? frequency[item]++ : (frequency[item] = 1);
+//   });
+//   return frequency;
+// };
+
+// console.log(getFrequency("aaccbaaabrrrddrrr"));
+
+// // option 2
+// const getFrequency = (string) => {
 //   var freq = {};
-//   for (var i = 0; i < string.length; i++) {
-//     var character = string.charAt(i);
+//   for (let i = 0; i < string.length; i++) {
+//     let character = string.charAt(i);
 //     if (freq[character]) {
 //       freq[character]++;
 //     } else {
@@ -311,10 +311,36 @@ console.log(count(text));
 //     }
 //   }
 //   return freq;
-// }
+// };
 
-// console.log(getFrequency("Indivisibilities"));
+// // option 2.2
+// const getFrequency = (string) => {
+//   var freq = {};
+//   for (let i = 0; i < string.length; i++) {
+//     let character = string.charAt(i);
+//     freq[character] ? freq[character]++ : (freq[character] = 1);
+//   }
+//   return freq;
+// };
+
+// console.log(getFrequency("indivisibilities"));
+// // {i: 7, n: 1, d: 1, v: 1, s: 2, …}
 
 // ----------------------------------------
+// Mając string „aaabbccccdd” zwróć string „a3b2c4d2”.
 
-// ----------------------------------------
+// const getFrequency = (string) => {
+//   const freq = {};
+//   [...string].forEach((character) => {
+//     freq[character] ? freq[character]++ : (freq[character] = 1);
+//   });
+//   const freqString = Object.entries(freq);
+//   // .map(([key, value]) => {
+//   //   return `${key}:${value}`; //['a:4', 'b:2', 'c:3', 'd:1']
+//   // })
+//   // .join(", "); // a:4, b:2, c:3, d:1
+//   return freqString;
+// };
+
+// console.log(getFrequency("aaaabbcccd"));
+// a:4, b:2, c:3, d:1
