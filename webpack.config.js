@@ -1,5 +1,5 @@
 const path = require("path");
-const entryPath = "JS_5_Coding_Interiew_Write_Code";
+const entryPath = "JS_1_String_adding_native_method";
 
 module.exports = {
   entry: `./${entryPath}/js/app.js`,
