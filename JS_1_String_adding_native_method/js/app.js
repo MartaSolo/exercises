@@ -17,11 +17,12 @@ const text1 = "Ala ma kota Bzika";
 // Ala ma Bzika kota
 
 // ---------------------
-let result = "";
-let i = 0;
+const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-do {
-  i += 1;
-  result += i + " ";
-} while (i > 0 && i < 5);
-console.log(result);
+const squareNumbers = (array) => {
+  return array.map((el) => {
+    return Math.pow(el, 2);
+  });
+};
+
+console.log(squareNumbers(numbers));
