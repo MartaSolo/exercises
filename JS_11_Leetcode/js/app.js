@@ -76,40 +76,57 @@
 // Input: strs = ["flower","flow","flight"]
 // Output: "fl"
 
-const longestCommonPrefix = function (strArr) {
-  strArr.sort((a, b) => a.length - b.length);
+// const longestCommonPrefix = function (strArr) {
+//   strArr.sort((a, b) => a.length - b.length);
 
-  for (let i = 0; i < strArr[0].length; i++) {
-    for (let j = 0; j < strArr.length; j++) {
-      if (strArr[j][i] !== strArr[0][i]) {
-        return strArr[0].slice(0, i);
-      }
-    }
-  }
-  return strArr[0];
-};
-
-// var longestCommonPrefix = function (strs) {
-//   // Return early on empty string
-//   if (!strs.length) return "";
-
-//   // sorting an array
-//   strs.sort((a, b) => a.length - b.length);
-
-//   // Loop through the letters of the first string
-//   for (let i = 0; i <= strs[0].length; i++) {
-//     // Loop through the other strings
-//     for (let j = 1; j < strs.length; j++) {
-//       // Check if this character is also present in the same position of each string
-//       if (strs[0][i] !== strs[j][i]) {
-//         // If not, return the string up to and including the previous character
-//         return strs[0].slice(0, i);
+//   for (let i = 0; i < strArr[0].length; i++) {
+//     for (let j = 0; j < strArr.length; j++) {
+//       if (strArr[j][i] !== strArr[0][i]) {
+//         return strArr[0].slice(0, i);
 //       }
 //     }
 //   }
-//   return strs[0];
+//   return strArr[0];
 // };
 
-console.log(longestCommonPrefix(["flower", "flow", "flight"])); // fl
-console.log(longestCommonPrefix(["flower", "flow", "flowing"])); //flow
-console.log(longestCommonPrefix(["dog", "racecar", "car"])); // ""
+// console.log(longestCommonPrefix(["flower", "flow", "flight"])); // fl
+// console.log(longestCommonPrefix(["flower", "flow", "flowing"])); //flow
+// console.log(longestCommonPrefix(["dog", "racecar", "car"])); // ""
+
+// -------------------------------------------------------
+
+//   Rotate Array
+// Given an array, rotate the array to the right by k steps, where k is non-negative.
+// Example 1:
+// Input: nums = [1,2,3,4,5,6,7], k = 3
+// Output: [5,6,7,1,2,3,4]
+// Explanation:
+// rotate 1 steps to the right: [7,1,2,3,4,5,6]
+// rotate 2 steps to the right: [6,7,1,2,3,4,5]
+// rotate 3 steps to the right: [5,6,7,1,2,3,4]
+
+// v1 - mutating the original array
+const rotateArray1 = (array, k) => {
+  for (let i = 1; i <= k; i++) {
+    let el = array.pop();
+    array.unshift(el);
+  }
+  return array;
+};
+
+// console.log(rotateArray1([1, 2, 3, 4, 5, 6, 7], 3)); // [5, 6, 7, 1, 2, 3, 4]
+// leetcode - 1 error when testing
+
+// v2 - not mutating the original array
+
+const rotateArray2 = (array, k) => {
+  // const rotatedPart = array.slice(k + 1, array.length);
+  const rotatedPart = array.slice(array.length - k, array.length);
+  console.log("rotatedPart", rotatedPart);
+  const stillPart = array.slice(0, array.length - k);
+  console.log("stillPart", stillPart);
+  return [...rotatedPart, ...stillPart];
+};
+
+console.log(rotateArray2([1, 2, 3, 4, 5, 6, 7], 3)); // [5, 6, 7, 1, 2, 3, 4]
+// leetcode - not accepting a new array, just modifying the input array
