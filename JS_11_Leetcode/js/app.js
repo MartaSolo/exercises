@@ -139,19 +139,46 @@
 // Output: [0,1]
 // Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
-const twoSum = (nums, target) => {
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = i + 1; j < nums.length; j++) {
-      if (nums[i] + nums[j] == target) {
-        return [i, j];
-      }
-    }
-  }
-};
+// const twoSum = (nums, target) => {
+//   for (let i = 0; i < nums.length; i++) {
+//     for (let j = i + 1; j < nums.length; j++) {
+//       if (nums[i] + nums[j] == target) {
+//         return [i, j];
+//       }
+//     }
+//   }
+// };
 
 // console.log(twoSum([2, 7, 11, 15], 9)); // [0,1]
 // console.log(twoSum([2, 7, 11, 15], 18)); // [1,2]
-console.log(twoSum([3, 3], 6)); // [0,1]
-console.log(twoSum([3, 2, 3], 6)); // [0, 2]
-console.log(twoSum([2, 7, 11, 15], 17)); // [0,3]
-console.log(twoSum([3, 2, 4, 5, 7, 8], 12)); // [2, 5]
+// console.log(twoSum([3, 3], 6)); // [0,1]
+// console.log(twoSum([3, 2, 3], 6)); // [0, 2]
+// console.log(twoSum([2, 7, 11, 15], 17)); // [0,3]
+// console.log(twoSum([3, 2, 4, 5, 7, 8], 12)); // [2, 5]
+
+// -------------------------------------------------------
+
+// Move Zeroes
+// Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+// Note that you must do this in-place without making a copy of the array.
+// Example 1:
+// Input: nums = [0,1,0,3,12]
+// Output: [1,3,12,0,0]
+
+// Example 2:
+// Input: nums = [0]
+// Output: [0]
+
+const moveZeros = (array) => {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === 0) {
+      let zeroIndex = array.indexOf(array[i]);
+      array.push(array[i]);
+      console.log(array);
+      array.splice(zeroIndex, 1);
+    }
+  }
+  return array;
+};
+
+console.log(moveZeros([0, 1, 0, 3, 12])); //  [1, 3, 12, 0, 0]
