@@ -196,14 +196,38 @@
 // Incrementing by one gives 123 + 1 = 124.
 // Thus, the result should be [1,2,4].
 
-var plusOne = function (digits) {
-  for (var i = digits.length - 1; i >= 0; i--) {
-    if (++digits[i] > 9) digits[i] = 0;
-    else return digits;
+// var plusOne = function (digits) {
+//   for (var i = digits.length - 1; i >= 0; i--) {
+//     if (++digits[i] > 9) digits[i] = 0;
+//     else return digits;
+//   }
+//   digits.unshift(1);
+//   return digits;
+// };
+
+// console.log(plusOne([1, 2, 3]));
+// console.log(plusOne([9, 9, 9]));
+
+// -------------------------------------------------------
+// Single Number
+// Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+// You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+// Example 1:
+// Input: nums = [2,2,1]
+// Output: 1
+
+// Example 2:
+// Input: nums = [4,1,2,1,2]
+// Output: 4
+
+const singleNumber = (nums) => {
+  nums.sort((a, b) => a - b);
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i - 1] !== nums[i] && nums[i] !== nums[i + 1]) {
+      return nums[i];
+    }
   }
-  digits.unshift(1);
-  return digits;
 };
 
-console.log(plusOne([1, 2, 3]));
-console.log(plusOne([9, 9, 9]));
+console.log(singleNumber([4, 1, 2, 1, 2]));
