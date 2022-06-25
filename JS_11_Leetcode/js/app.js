@@ -243,19 +243,69 @@
 // Input: nums = [1,2,3,4]
 // Output: false
 
-const containsDuplicate = (nums) => {
-  nums.sort((a, b) => a - b);
-  let result;
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === nums[i + 1]) {
-      result = true;
-      break;
+// const containsDuplicate = (nums) => {
+//   nums.sort((a, b) => a - b);
+//   let result;
+//   for (let i = 0; i < nums.length; i++) {
+//     if (nums[i] === nums[i + 1]) {
+//       result = true;
+//       break;
+//     } else {
+//       result = false;
+//     }
+//   }
+//   return result;
+// };
+// console.log(containsDuplicate([1, 2, 3, 1])); // true
+// console.log(containsDuplicate([1, 2, 3, 4])); // false
+// console.log(containsDuplicate([1, 2, 3, 4, 4])); // true
+
+// -------------------------------------------------------
+//   Intersection of Two Arrays II
+// Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+
+// Example 1:
+// Input: nums1 = [1,2,2,1], nums2 = [2,2]
+// Output: [2,2]
+
+// Example 2:
+// Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+// Output: [4,9]
+// Explanation: [9,4] is also accepted.
+
+const intersect = (nums1, nums2) => {
+  let objNums1 = {};
+  let result = [];
+  for (let el of nums1) {
+    if (!objNums1[el]) {
+      objNums1[el] = 1;
     } else {
-      result = false;
+      objNums1[el]++;
     }
   }
+  console.log(objNums1);
+
+  for (let el of nums2) {
+    if (objNums1[el]) {
+      result.push(el);
+      objNums1[el]--;
+    }
+  }
+
   return result;
 };
-console.log(containsDuplicate([1, 2, 3, 1])); // true
-console.log(containsDuplicate([1, 2, 3, 4])); // false
-console.log(containsDuplicate([1, 2, 3, 4, 4])); // true
+
+console.log(intersect([1, 2, 2, 1], [2, 2]));
+console.log(intersect([4, 9, 5], [9, 4, 9, 8, 4]));
+console.log(
+  intersect(
+    [
+      43, 85, 49, 2, 83, 2, 39, 99, 15, 70, 39, 27, 71, 3, 88, 5, 19, 5, 68, 34,
+      7, 41, 84, 2, 13, 85, 12, 54, 7, 9, 13, 19, 92,
+    ],
+    [
+      10, 8, 53, 63, 58, 83, 26, 10, 58, 3, 61, 56, 55, 38, 81, 29, 69, 55, 86,
+      23, 91, 44, 9, 98, 41, 48, 41, 16, 42, 72, 6, 4, 2, 81, 42, 84, 4, 13,
+    ]
+  )
+);
