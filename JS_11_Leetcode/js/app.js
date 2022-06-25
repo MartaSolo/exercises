@@ -221,13 +221,41 @@
 // Input: nums = [4,1,2,1,2]
 // Output: 4
 
-const singleNumber = (nums) => {
+// const singleNumber = (nums) => {
+//   nums.sort((a, b) => a - b);
+//   for (let i = 0; i < nums.length; i++) {
+//     if (nums[i - 1] !== nums[i] && nums[i] !== nums[i + 1]) {
+//       return nums[i];
+//     }
+//   }
+// };
+
+// console.log(singleNumber([4, 1, 2, 1, 2])); // 4
+
+// -------------------------------------------------------
+// Contains Duplicate
+// Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+// Example 1:
+// Input: nums = [1,2,3,1]
+// Output: true
+
+// Example 2:
+// Input: nums = [1,2,3,4]
+// Output: false
+
+const containsDuplicate = (nums) => {
   nums.sort((a, b) => a - b);
+  let result;
   for (let i = 0; i < nums.length; i++) {
-    if (nums[i - 1] !== nums[i] && nums[i] !== nums[i + 1]) {
-      return nums[i];
+    if (nums[i] === nums[i + 1]) {
+      result = true;
+      break;
+    } else {
+      result = false;
     }
   }
+  return result;
 };
-
-console.log(singleNumber([4, 1, 2, 1, 2]));
+console.log(containsDuplicate([1, 2, 3, 1])); // true
+console.log(containsDuplicate([1, 2, 3, 4])); // false
+console.log(containsDuplicate([1, 2, 3, 4, 4])); // true
