@@ -1,5 +1,5 @@
 const path = require("path");
-const entryPath = "JS_11_Leetcode";
+const entryPath = "JS_12_Codewars";
 
 module.exports = {
   entry: `./${entryPath}/js/app.js`,
