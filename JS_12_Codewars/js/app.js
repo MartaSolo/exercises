@@ -86,19 +86,104 @@
 
 // Examples: spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw" spinWords( "This is a test") => returns "This is a test" spinWords( "This is another test" )=> returns "This is rehtona test"
 
-const spinWords = (string) => {
-  let words = string.split(" "); // ['Hey', 'fellow', 'warriors']
-  console.log(words);
-  let wordsReversed = words.map((word) => {
-    if (word.length >= 5) {
-      return word.split("").reverse().join("");
-    } else {
-      return word;
-    }
-  });
-  console.log(wordsReversed);
-  return wordsReversed.join(" ");
+// const spinWords = (string) => {
+//   let words = string.split(" "); // ['Hey', 'fellow', 'warriors']
+//   console.log(words);
+//   let wordsReversed = words.map((word) => {
+//     if (word.length >= 5) {
+//       return word.split("").reverse().join("");
+//     } else {
+//       return word;
+//     }
+//   });
+//   console.log(wordsReversed);  // ['Hey', 'wollef', 'sroirraw']
+//   return wordsReversed.join(" ");
+// };
+
+// console.log(spinWords("Hey fellow warriors")); // Hey wollef sroirraw
+// console.log(spinWords("This is another test")); // This is rehtona test
+
+// ---------------------------------------------------------
+
+// Sum of Digits / Digital Root
+
+// Digital root is the recursive sum of all the digits in a number.
+// Given n, take the sum of the digits of n. If that value has more than one digit, continue reducing in this way until a single-digit number is produced. The input will be a non-negative integer.
+// Examples
+//     16  -->  1 + 6 = 7
+//    942  -->  9 + 4 + 2 = 15  -->  1 + 5 = 6
+// 132189  -->  1 + 3 + 2 + 1 + 8 + 9 = 24  -->  2 + 4 = 6
+// 493193  -->  4 + 9 + 3 + 1 + 9 + 3 = 29  -->  2 + 9 = 11  -->  1 + 1 = 2
+
+// v 1
+// const digital_root = (number) => {
+//   if (number < 10) {
+//     return number;
+//   }
+//   let arrNumber = number.toString().split(""); // ['4', '9', '3', '1', '9', '3']
+//   let sum = arrNumber.reduce((acc, curr) => Number(acc) + Number(curr));
+
+//   while (sum >= 10) {
+//     sum = sum
+//       .toString()
+//       .split("")
+//       .reduce((acc, curr) => Number(acc) + Number(curr));
+//     if (sum > 10) {
+//       continue;
+//     }
+//   }
+//   return sum;
+// };
+
+// // v2
+// const digital_root = (number) => {
+//   if (number < 10) {
+//     return number;
+//   }
+//   let arrNumber = number.toString().split("");
+//   let sum = arrNumber.reduce((acc, curr) => Number(acc) + Number(curr));
+
+//   return digital_root(sum);
+// };
+
+// console.log(digital_root(493193)); //2
+// console.log(digital_root(732189)); //3
+// console.log(digital_root(7)); //7
+
+// ---------------------------------------------------------
+// Who likes it?
+// You probably know the "like" system from Facebook and other pages. People can "like" blog posts, pictures or other items. We want to create the text that should be displayed next to such an item.
+
+// Implement the function which takes an array containing the names of people that like an item. It must return the display text as shown in the examples:
+
+// []                                -->  "no one likes this"
+// ["Peter"]                         -->  "Peter likes this"
+// ["Jacob", "Alex"]                 -->  "Jacob and Alex like this"
+// ["Max", "John", "Mark"]           -->  "Max, John and Mark like this"
+// ["Alex", "Jacob", "Mark", "Max"]  -->  "Alex, Jacob and 2 others like this"
+// Note: For 4 or more names, the number in "and 2 others" simply increases.
+
+const likes = (names) => {
+  switch (true) {
+    case names.length === 0:
+      return "no one likes this";
+    case names.length === 1:
+      return `${names[0]} likes this`;
+    case names.length === 2:
+      return `${names[0]} and ${names[1]} like this`;
+    case names.length === 3:
+      return `${names[0]}, ${names[1]} and ${names[2]} like this`;
+    case names.length >= 4:
+      return `${names[0]}, ${names[1]} and ${
+        names.length - 2
+      } others like this`;
+    default:
+      "";
+  }
 };
 
-console.log(spinWords("Hey fellow warriors")); // Hey wollef sroirraw
-console.log(spinWords("This is another test")); // This is rehtona test
+console.log(likes([])); // no one likes this
+console.log(likes(["Peter"])); // Peter likes this
+console.log(likes(["Jacob", "Alex"])); // Jacob and Alex like this
+console.log(likes(["Max", "John", "Mark"])); // Max, John and Mark like this
+console.log(likes(["Alex", "Jacob", "Mark", "Max"])); // Alex, Jacob and 2 others like this
