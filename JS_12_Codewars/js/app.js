@@ -1,5 +1,4 @@
-// codewars 6kyu
-// ---------------------------------------------------------
+// -------------------------- codewars 6kyu -------------------------------
 // Array.diff
 
 // Your goal in this kata is to implement a difference function, which subtracts one list from another and returns the result.
@@ -163,27 +162,75 @@
 // ["Alex", "Jacob", "Mark", "Max"]  -->  "Alex, Jacob and 2 others like this"
 // Note: For 4 or more names, the number in "and 2 others" simply increases.
 
-const likes = (names) => {
-  switch (true) {
-    case names.length === 0:
-      return "no one likes this";
-    case names.length === 1:
-      return `${names[0]} likes this`;
-    case names.length === 2:
-      return `${names[0]} and ${names[1]} like this`;
-    case names.length === 3:
-      return `${names[0]}, ${names[1]} and ${names[2]} like this`;
-    case names.length >= 4:
-      return `${names[0]}, ${names[1]} and ${
-        names.length - 2
-      } others like this`;
-    default:
-      "";
-  }
+// const likes = (names) => {
+//   switch (true) {
+//     case names.length === 0:
+//       return "no one likes this";
+//     case names.length === 1:
+//       return `${names[0]} likes this`;
+//     case names.length === 2:
+//       return `${names[0]} and ${names[1]} like this`;
+//     case names.length === 3:
+//       return `${names[0]}, ${names[1]} and ${names[2]} like this`;
+//     case names.length >= 4:
+//       return `${names[0]}, ${names[1]} and ${
+//         names.length - 2
+//       } others like this`;
+//     default:
+//       "";
+//   }
+// };
+
+// console.log(likes([])); // no one likes this
+// console.log(likes(["Peter"])); // Peter likes this
+// console.log(likes(["Jacob", "Alex"])); // Jacob and Alex like this
+// console.log(likes(["Max", "John", "Mark"])); // Max, John and Mark like this
+// console.log(likes(["Alex", "Jacob", "Mark", "Max"])); // Alex, Jacob and 2 others like this
+
+// -------------------------- codewars 5kyu -------------------------------
+
+// Simple Pig Latin
+// Move the first letter of each word to the end of it, then add "ay" to the end of the word. Leave punctuation marks untouched.
+// Examples
+// pigIt('Pig latin is cool'); // igPay atinlay siay oolcay
+// pigIt('Hello world !');     // elloHay orldway !
+
+// const pigIt = (string) => {
+//   let words = string.split(" ");
+//   let wordsRev = words.map((word) => {
+//     if (
+//       word === "!" ||
+//       word === "?" ||
+//       word === ";" ||
+//       word === "." ||
+//       word === ","
+//     ) {
+//       return word;
+//     } else {
+//       return word.substr(1) + word.substr(0, 1) + "ay";
+//     }
+//   });
+//   return wordsRev.join(" ");
+// };
+
+// console.log(pigIt("Pig latin is cool"));
+// console.log(pigIt("Hello world !"));
+
+// ---------------------------------------------------------
+// Moving Zeros To The End
+// Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
+
+// moveZeros([false,1,0,1,2,0,1,3,"a"]) // returns[false,1,1,2,1,3,"a",0,0]
+
+const moveZeros = (arr) => {
+  arr.forEach((el) => {
+    if (el === 0) {
+      arr.push(el);
+      let index = arr.indexOf(el);
+      arr.splice(index, 1);
+    }
+  });
+  return arr;
 };
 
-console.log(likes([])); // no one likes this
-console.log(likes(["Peter"])); // Peter likes this
-console.log(likes(["Jacob", "Alex"])); // Jacob and Alex like this
-console.log(likes(["Max", "John", "Mark"])); // Max, John and Mark like this
-console.log(likes(["Alex", "Jacob", "Mark", "Max"])); // Alex, Jacob and 2 others like this
+console.log(moveZeros([false, 1, 0, 1, 2, 0, 1, 3, "a"]));
