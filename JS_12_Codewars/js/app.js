@@ -222,15 +222,117 @@
 
 // moveZeros([false,1,0,1,2,0,1,3,"a"]) // returns[false,1,1,2,1,3,"a",0,0]
 
-const moveZeros = (arr) => {
-  arr.forEach((el) => {
-    if (el === 0) {
-      arr.push(el);
-      let index = arr.indexOf(el);
-      arr.splice(index, 1);
+// const moveZeros = (arr) => {
+//   arr.forEach((el) => {
+//     if (el === 0) {
+//       arr.push(el);
+//       let index = arr.indexOf(el);
+//       arr.splice(index, 1);
+//     }
+//   });
+//   return arr;
+// };
+
+// console.log(moveZeros([false, 1, 0, 1, 2, 0, 1, 3, "a"]));
+
+// ---------------------------------------------------------
+// Valid Parentheses
+// Write a function that takes a string of parentheses, and determines if the order of the parentheses is valid. The function should return true if the string is valid, and false if it's invalid.
+// Examples
+// "()"              =>  true
+// ")(()))"          =>  false
+// "("               =>  false
+// "(())((()())())"  =>  true
+
+// const validParentheses = (parens) => {
+//   while (parens.includes("()")) {
+//     parens = parens.replace("()", "");
+//   }
+//   return parens.length === 0;
+// };
+
+// console.log(validParentheses("(())((()())())")); // true
+// console.log(validParentheses(")(()))")); // false
+
+// ---------------------------------------------------------
+// Human Readable Time
+
+// Write a function, which takes a non-negative integer (seconds) as input and returns the time in a human-readable format (HH:MM:SS)
+
+// HH = hours, padded to 2 digits, range: 00 - 99
+// MM = minutes, padded to 2 digits, range: 00 - 59
+// SS = seconds, padded to 2 digits, range: 00 - 59
+// The maximum time never exceeds 359999 (99:59:59)
+
+// strictEqual(humanReadable(86399), '23:59:59', 'humanReadable(86399)');
+
+// v1
+// const humanReadable = (seconds) => {
+//   let sec = seconds % 60;
+//   seconds = seconds - sec;
+//   let min = (seconds / 60) % 60;
+//   seconds = seconds - min * 60;
+//   let h = seconds / 60 / 60;
+
+//   let SS = sec < 10 ? `0${sec}` : `${sec}`;
+//   let MM = min < 10 ? `0${min}` : `${min}`;
+//   let HH = h < 10 ? `0${h}` : `${h}`;
+
+//   return `${HH}:${MM}:${SS}`;
+// };
+
+// v2
+// const humanReadable = (seconds) => {
+//   let h = parseInt(seconds / 3600);
+//   let min = parseInt(seconds / 60) % 60;
+//   let sec = parseInt(seconds % 60);
+//   const pad = (value) => {
+//     return value < 10 ? "0" + value : value;
+//   };
+//   return `${pad(h)}:${pad(min)}:${pad(sec)}`;
+// };
+
+// console.log(humanReadable(45296)); // 12:34:56
+// console.log(humanReadable(86399)); // 23:59:59
+
+// ---------------------------------------------------------
+
+// Where my anagrams at?
+// What is an anagram? Well, two words are anagrams of each other if they both contain the same letters. For example:
+// 'abba' & 'baab' == true
+// 'abba' & 'bbaa' == true
+// 'abba' & 'abbba' == false
+// 'abba' & 'abca' == false
+
+// Write a function that will find all the anagrams of a word from a list. You will be given two inputs a word and an array with words. You should return an array of all the anagrams or an empty array if there are none. For example:
+// anagrams('abba', ['aabb', 'abcd', 'bbaa', 'dada']) => ['aabb', 'bbaa']
+// anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']) => ['carer', 'racer']
+// anagrams('laser', ['lazing', 'lazy',  'lacer']) => []
+
+// For Go: Empty string slice is expected when there are no anagrams found.
+
+// v1
+
+const anagrams = (word, words) => {
+  let anagramWords = [];
+
+  const sortString = (string) => string.split("").sort().join("");
+
+  words.forEach((el) => {
+    let sortedEl = sortString(el);
+    if (sortString(word).includes(sortedEl)) {
+      anagramWords.push(el);
     }
   });
-  return arr;
+
+  return anagramWords;
 };
 
-console.log(moveZeros([false, 1, 0, 1, 2, 0, 1, 3, "a"]));
+// v2
+
+const anagrams = (word, words) => {
+  const sortString = (string) => string.split("").sort().join("");
+  return words.filter((el) => sortString(word) === sortString(el));
+};
+
+console.log(anagrams("abba", ["aabb", "abcd", "bbaa", "dada"]));
