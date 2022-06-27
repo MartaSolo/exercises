@@ -313,26 +313,117 @@
 
 // v1
 
-const anagrams = (word, words) => {
-  let anagramWords = [];
+// const anagrams = (word, words) => {
+//   let anagramWords = [];
 
-  const sortString = (string) => string.split("").sort().join("");
+//   const sortString = (string) => string.split("").sort().join("");
 
-  words.forEach((el) => {
-    let sortedEl = sortString(el);
-    if (sortString(word).includes(sortedEl)) {
-      anagramWords.push(el);
+//   words.forEach((el) => {
+//     let sortedEl = sortString(el);
+//     if (sortString(word).includes(sortedEl)) {
+//       anagramWords.push(el);
+//     }
+//   });
+
+//   return anagramWords;
+// };
+
+// // v2
+
+// const anagrams = (word, words) => {
+//   const sortString = (string) => string.split("").sort().join("");
+//   return words.filter((el) => sortString(word) === sortString(el));
+// };
+
+// console.log(anagrams("abba", ["aabb", "abcd", "bbaa", "dada"]));
+
+// ---------------------------------------------------------
+
+// RGB To Hex Conversion
+
+// The rgb function is incomplete. Complete it so that passing in RGB decimal values will result in a hexadecimal representation being returned. Valid decimal values for RGB are 0 - 255. Any values that fall out of that range must be rounded to the closest valid value.
+
+// Note: Your answer should always be 6 characters long, the shorthand with 3 will not work here.
+
+// The following are examples of expected output values:
+
+// rgb(255, 255, 255) // returns FFFFFF
+// rgb(255, 255, 300) // returns FFFFFF
+// rgb(0,0,0) // returns 000000
+// rgb(148, 0, 211) // returns 9400D3
+
+// const rgb = (r, g, b) => {
+//   const checkRGBValue = (value) => {
+//     if (value < 0) {
+//       value = 0;
+//     }
+//     if (value > 255) {
+//       value = 255;
+//     }
+//     return value;
+//   };
+//   const numberToHex = (number) => {
+//     let hex = number.toString(16).toUpperCase();
+//     return hex.length === 1 ? `0${hex}` : hex;
+//   };
+
+//   let red = numberToHex(checkRGBValue(r));
+//   let green = numberToHex(checkRGBValue(g));
+//   let blue = numberToHex(checkRGBValue(b));
+
+//   return `${red}${green}${blue}`;
+// };
+
+// console.log(rgb(148, 0, 211)); // 9400D3
+// console.log(rgb(183, 0, 123)); // B7007B
+
+// ---------------------------------------------------------
+// Pete, the baker
+
+// Pete likes to bake some cakes. He has some recipes and ingredients. Unfortunately he is not good in maths. Can you help him to find out, how many cakes he could bake considering his recipes?
+
+// Write a function cakes(), which takes the recipe (object) and the available ingredients (also an object) and returns the maximum number of cakes Pete can bake (integer). For simplicity there are no units for the amounts (e.g. 1 lb of flour or 200 g of sugar are simply 1 or 200). Ingredients that are not present in the objects, can be considered as 0.
+
+// Examples:
+
+// // must return 2
+// cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200});
+// // must return 0
+// cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000});
+
+const cakes = (recipe, available) => {
+  const recipeIngr = Object.entries(recipe);
+  console.log(recipeIngr);
+  const availableIngr = Object.entries(available);
+  console.log(availableIngr);
+
+  let recipePerCake = {};
+
+  for (let i = 0; i < recipeIngr.length; i++) {
+    recipePerCake[recipeIngr[i][0]] = 0; // {apples: 0, flour: 0, sugar: 0, milk: 0, oil: 0}
+    for (let j = 0; j < availableIngr.length; j++) {
+      if (recipeIngr[i][0] === availableIngr[j][0]) {
+        recipePerCake[recipeIngr[i][0]] =
+          availableIngr[j][1] / recipeIngr[i][1]; // {apples: 0, flour: 6.6, sugar: 3.3, milk: 20, oil: 0}
+      }
     }
-  });
+  }
 
-  return anagramWords;
+  console.log(recipePerCake);
+  let numbers = Object.values(recipePerCake).sort((a, b) => a - b); // [0, 0, 3.3, 6.6, 20]
+  console.log(numbers);
+  return Math.floor(numbers[0]);
 };
 
-// v2
-
-const anagrams = (word, words) => {
-  const sortString = (string) => string.split("").sort().join("");
-  return words.filter((el) => sortString(word) === sortString(el));
-};
-
-console.log(anagrams("abba", ["aabb", "abcd", "bbaa", "dada"]));
+// console.log(
+//   cakes(
+//     { flour: 500, sugar: 200, eggs: 1 },
+//     { flour: 1200, sugar: 1200, eggs: 5, milk: 200 }
+//   )
+// );
+console.log(
+  cakes(
+    { apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100 },
+    { sugar: 500, flour: 2000, milk: 2000 }
+  )
+);
