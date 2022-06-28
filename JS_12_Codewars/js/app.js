@@ -383,47 +383,129 @@
 // Pete likes to bake some cakes. He has some recipes and ingredients. Unfortunately he is not good in maths. Can you help him to find out, how many cakes he could bake considering his recipes?
 
 // Write a function cakes(), which takes the recipe (object) and the available ingredients (also an object) and returns the maximum number of cakes Pete can bake (integer). For simplicity there are no units for the amounts (e.g. 1 lb of flour or 200 g of sugar are simply 1 or 200). Ingredients that are not present in the objects, can be considered as 0.
-
 // Examples:
-
 // // must return 2
 // cakes({flour: 500, sugar: 200, eggs: 1}, {flour: 1200, sugar: 1200, eggs: 5, milk: 200});
 // // must return 0
 // cakes({apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100}, {sugar: 500, flour: 2000, milk: 2000});
 
-const cakes = (recipe, available) => {
-  const recipeIngr = Object.entries(recipe);
-  console.log(recipeIngr);
-  const availableIngr = Object.entries(available);
-  console.log(availableIngr);
+// const cakes = (recipe, available) => {
+//   const recipeIngr = Object.entries(recipe);
+//   console.log(recipeIngr);
+//   const availableIngr = Object.entries(available);
+//   console.log(availableIngr);
 
-  let recipePerCake = {};
+//   let recipePerCake = {};
 
-  for (let i = 0; i < recipeIngr.length; i++) {
-    recipePerCake[recipeIngr[i][0]] = 0; // {apples: 0, flour: 0, sugar: 0, milk: 0, oil: 0}
-    for (let j = 0; j < availableIngr.length; j++) {
-      if (recipeIngr[i][0] === availableIngr[j][0]) {
-        recipePerCake[recipeIngr[i][0]] =
-          availableIngr[j][1] / recipeIngr[i][1]; // {apples: 0, flour: 6.6, sugar: 3.3, milk: 20, oil: 0}
-      }
-    }
-  }
+//   for (let i = 0; i < recipeIngr.length; i++) {
+//     recipePerCake[recipeIngr[i][0]] = 0; // {apples: 0, flour: 0, sugar: 0, milk: 0, oil: 0}
+//     for (let j = 0; j < availableIngr.length; j++) {
+//       if (recipeIngr[i][0] === availableIngr[j][0]) {
+//         recipePerCake[recipeIngr[i][0]] =
+//           availableIngr[j][1] / recipeIngr[i][1]; // {apples: 0, flour: 6.6, sugar: 3.3, milk: 20, oil: 0}
+//       }
+//     }
+//   }
 
-  console.log(recipePerCake);
-  let numbers = Object.values(recipePerCake).sort((a, b) => a - b); // [0, 0, 3.3, 6.6, 20]
-  console.log(numbers);
-  return Math.floor(numbers[0]);
-};
+//   console.log(recipePerCake);
+//   let numbers = Object.values(recipePerCake).sort((a, b) => a - b); // [0, 0, 3.3, 6.6, 20]
+//   console.log(numbers);
+//   return Math.floor(numbers[0]);
+// };
 
+// // console.log(
+// //   cakes(
+// //     { flour: 500, sugar: 200, eggs: 1 },
+// //     { flour: 1200, sugar: 1200, eggs: 5, milk: 200 }
+// //   )
+// // );
 // console.log(
 //   cakes(
-//     { flour: 500, sugar: 200, eggs: 1 },
-//     { flour: 1200, sugar: 1200, eggs: 5, milk: 200 }
+//     { apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100 },
+//     { sugar: 500, flour: 2000, milk: 2000 }
 //   )
 // );
-console.log(
-  cakes(
-    { apples: 3, flour: 300, sugar: 150, milk: 100, oil: 100 },
-    { sugar: 500, flour: 2000, milk: 2000 }
-  )
-);
+
+// ---------------------------------------------------------
+
+// The Hashtag Generator
+// The marketing team is spending way too much time typing in hashtags.
+// Let's help them with our own Hashtag Generator!
+
+// Here's the deal:
+
+// It must start with a hashtag (#).
+// All words must have their first letter capitalized.
+// If the final result is longer than 140 chars it must return false.
+// If the input or the result is an empty string it must return false.
+// Examples
+// " Hello there thanks for trying my Kata"  =>  "#HelloThereThanksForTryingMyKata"
+// "    Hello     World   "                  =>  "#HelloWorld"
+// ""                                        =>  false
+
+// const generateHashtag = (str) => {
+//   if (str.trim().length === 0) {
+//     return false;
+//   }
+
+//   let filteredStrArr = str
+//     .split(" ")
+//     .map((el) => el.substr(0, 1).toUpperCase() + el.substr(1));
+//   console.log(filteredStrArr);
+
+//   let hashtag = `#${filteredStrArr.join("")}`;
+
+//   return hashtag.length > 140 ? false : hashtag;
+// };
+
+// console.log(generateHashtag(" Hello there thanks for trying my Kata")); // #HelloThereThanksForTryingMyKata
+// console.log(generateHashtag("        ")); // false
+
+// ---------------------------------------------------------
+
+// Extract the domain name from a URL
+
+// Write a function that when given a URL as a string, parses out just the domain name and returns it as a string. For example:
+
+// * url = "http://github.com/carbonfive/raygun" -> domain name = "github"
+// * url = "http://www.zombie-bites.com"         -> domain name = "zombie-bites"
+// * url = "https://www.cnet.com"                -> domain name = cnet"
+
+// v 1
+// const domainName = (url) => {
+//   let modifiedUrl = url;
+//   let domain = "";
+
+//   if (url.includes("http://")) {
+//     modifiedUrl = url.substr(7);
+//   }
+//   if (url.includes("https://")) {
+//     modifiedUrl = url.substr(8);
+//   }
+//   if (modifiedUrl.includes("www.")) {
+//     modifiedUrl = modifiedUrl.substr(4);
+//   }
+
+//   for (let i = 0; i < modifiedUrl.length; i++) {
+//     if (modifiedUrl[i] === ".") {
+//       let index = modifiedUrl.indexOf(modifiedUrl[i]);
+//       domain = modifiedUrl.substring(0, index);
+//     }
+//   }
+//   return domain;
+// };
+
+// v 2
+// const domainName = (url) => {
+//   url = url.replace("http://", "");
+//   url = url.replace("https://", "");
+//   url = url.replace("www.", "");
+//   let domain = url.split(".")[0];
+//   return domain;
+// };
+
+// console.log(domainName("https://github.com/martasolo")); // github
+// console.log(domainName("http://www.zombie-bites.com")); // zombie-bites
+// console.log(domainName("www.xakep.ru")); // xakep
+
+// -------------------------- codewars 4kyu -------------------------------
