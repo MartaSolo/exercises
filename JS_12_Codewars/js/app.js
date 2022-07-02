@@ -538,53 +538,141 @@
 
 // A unit of time must be used "as much as possible". It means that the function should not return 61 seconds, but 1 minute and 1 second instead. Formally, the duration specified by of a component must not be greater than any valid more significant unit of time.
 
-const formatDuration = (seconds) => {
-  switch (true) {
-    case seconds < 0:
-      return false;
-    case seconds === 0:
-      return "now";
-    case seconds < 60:
-      return seconds === 1 ? `1 second` : `${seconds}seconds`;
+// const formatDuration = (seconds) => {
+//   switch (true) {
+//     case seconds < 0:
+//       return false;
+//     case seconds === 0:
+//       return "now";
+//     case seconds < 60:
+//       return seconds === 1 ? `1 second` : `${seconds}seconds`;
+//   }
+
+//   const duration = {};
+
+//   const countDuration = (secondsNumber) => {
+//     duration.year = parseInt(secondsNumber / (365 * 24 * 60 * 60));
+//     duration.day = parseInt((secondsNumber / (24 * 60 * 60)) % 365);
+//     duration.hour = parseInt((secondsNumber / (60 * 60)) % 24);
+//     duration.minute = parseInt(secondsNumber / 60) % 60;
+//     duration.second = parseInt(secondsNumber % 60);
+//     return duration;
+//   };
+//   countDuration(seconds);
+//   //   console.log(duration);
+
+//   const dateArr = Object.entries(duration).filter((el) => {
+//     return el[1] !== 0;
+//   });
+
+//   const dateFormatted = dateArr.map((el) => {
+//     return el[1] === 1 ? `${el[1]} ${el[0]}` : `${el[1]} ${el[0]}s`;
+//   });
+
+//   switch (dateFormatted.length) {
+//     case 1:
+//       return `${dateFormatted[0]}`;
+//     case 2:
+//       return `${dateFormatted[0]} and ${dateFormatted[1]}`;
+//     case 3:
+//       return `${dateFormatted[0]}, ${dateFormatted[1]} and ${dateFormatted[2]}`;
+//     case 4:
+//       return `${dateFormatted[0]}, ${dateFormatted[1]}, ${dateFormatted[2]} and ${dateFormatted[3]}`;
+//     case 5:
+//       return `${dateFormatted[0]}, ${dateFormatted[1]}, ${dateFormatted[2]}, ${dateFormatted[3]} and ${dateFormatted[4]}`;
+//     default:
+//       "";
+//   }
+// };
+
+// console.log(formatDuration(212345678));
+// console.log(formatDuration(1));
+// console.log(formatDuration(3662));
+
+// ---------------------------------------------------------
+
+// Range Extraction
+// A format for expressing an ordered list of integers is to use a comma separated list of either
+
+// individual integers
+// or a range of integers denoted by the starting integer separated from the end integer in the range by a dash, '-'. The range includes all integers in the interval including both endpoints. It is not considered a range unless it spans at least 3 numbers. For example "12,13,15-17"
+// Complete the solution so that it takes a list of integers in increasing order and returns a correctly formatted string in the range format.
+
+// Example:
+
+// solution([-10, -9, -8, -6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]);
+// returns "-10--8,-6,-3-1,3-5,7-11,14,15,17-20"
+
+// const solution = (list) => {
+//   const sorted = list.sort((a, b) => a - b);
+//   const grouped = sorted.map(
+//     (x, i, a) =>
+//       (i == a.findIndex((x2, i2) => i2 - x2 == i - x) &&
+//         a.filter((x2, i2) => i2 - x2 == i - x)) ||
+//       []
+//   );
+//   console.log(grouped);
+//   const ranged = grouped.map((x) =>
+//     x.length > 2 ? x[0] + "-" + x.slice(-1)[0] : x
+//   );
+//   console.log(ranged);
+//   return ranged.flat().join(",");
+// };
+
+// console.log(
+//   solution([
+//     -10, -9, -8, -6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18,
+//     19, 20,
+//   ])
+// );
+
+// ---------------------------------------------------------
+
+// First non-repeating character
+// Write a function named first_non_repeating_letter that takes a string input, and returns the first character that is not repeated anywhere in the string.
+
+// For example, if given the input 'stress', the function should return 't', since the letter t only occurs once in the string, and occurs first in the string.
+
+// As an added challenge, upper- and lowercase letters are considered the same character, but the function should return the correct case for the initial letter. For example, the input 'sTreSS' should return 'T'.
+
+// If a string contains all repeating characters, it should return an empty string ("") or None -- see sample tests.
+
+const firstNonRepeatingLetter = (str) => {
+  if (str.length === 1) {
+    return str;
   }
 
-  const duration = {};
+  let string = str.toLowerCase();
+  let stringObj = {};
 
-  const countDuration = (secondsNumber) => {
-    duration.year = parseInt(secondsNumber / (365 * 24 * 60 * 60));
-    duration.day = parseInt((secondsNumber / (24 * 60 * 60)) % 365);
-    duration.hour = parseInt((secondsNumber / (60 * 60)) % 24);
-    duration.minute = parseInt(secondsNumber / 60) % 60;
-    duration.second = parseInt(secondsNumber % 60);
-    return duration;
-  };
-  countDuration(seconds);
-  //   console.log(duration);
-
-  const dateArr = Object.entries(duration).filter((el) => {
-    return el[1] !== 0;
-  });
-
-  const dateFormatted = dateArr.map((el) => {
-    return el[1] === 1 ? `${el[1]} ${el[0]}` : `${el[1]} ${el[0]}s`;
-  });
-
-  switch (dateFormatted.length) {
-    case 1:
-      return `${dateFormatted[0]}`;
-    case 2:
-      return `${dateFormatted[0]} and ${dateFormatted[1]}`;
-    case 3:
-      return `${dateFormatted[0]}, ${dateFormatted[1]} and ${dateFormatted[2]}`;
-    case 4:
-      return `${dateFormatted[0]}, ${dateFormatted[1]}, ${dateFormatted[2]} and ${dateFormatted[3]}`;
-    case 5:
-      return `${dateFormatted[0]}, ${dateFormatted[1]}, ${dateFormatted[2]}, ${dateFormatted[3]} and ${dateFormatted[4]}`;
-    default:
-      "";
+  for (let i = 0; i < string.length; i++) {
+    if (!stringObj[string[i]]) {
+      stringObj[string[i]] = 1;
+    } else {
+      stringObj[string[i]]++;
+    }
   }
+
+  console.log(stringObj);
+
+  let arrTemp = Object.entries(stringObj).filter((el) => el[1] === 1);
+  console.log(arrTemp);
+
+  if (arrTemp.length === 0) {
+    return "";
+  }
+
+  let sortedIndexes = arrTemp
+    .map((el) => string.indexOf(el[0]))
+    .sort((a, b) => a - b);
+  console.log(sortedIndexes);
+
+  return str[sortedIndexes[0]];
 };
 
-console.log(formatDuration(212345678));
-console.log(formatDuration(1));
-console.log(formatDuration(3662));
+console.log(firstNonRepeatingLetter("sTreSS"));
+// console.log(firstNonRepeatingLetter("moomen"));
+// console.log(firstNonRepeatingLetter("a"));
+// console.log(firstNonRepeatingLetter("aabbcc"));
+
+// console.log(firstNonRepeatingLetter("moom"));
