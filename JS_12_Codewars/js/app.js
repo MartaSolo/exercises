@@ -508,6 +508,155 @@
 // console.log(domainName("http://www.zombie-bites.com")); // zombie-bites
 // console.log(domainName("www.xakep.ru")); // xakep
 
+// ---------------------------------------------------------
+
+// First non-repeating character
+// Write a function named first_non_repeating_letter that takes a string input, and returns the first character that is not repeated anywhere in the string.
+
+// For example, if given the input 'stress', the function should return 't', since the letter t only occurs once in the string, and occurs first in the string.
+
+// As an added challenge, upper- and lowercase letters are considered the same character, but the function should return the correct case for the initial letter. For example, the input 'sTreSS' should return 'T'.
+
+// If a string contains all repeating characters, it should return an empty string ("") or None -- see sample tests.
+
+// const firstNonRepeatingLetter = (str) => {
+//   if (str.length === 1) {
+//     return str;
+//   }
+
+//   let string = str.toLowerCase();
+//   let stringObj = {};
+
+//   for (let i = 0; i < string.length; i++) {
+//     if (!stringObj[string[i]]) {
+//       stringObj[string[i]] = 1;
+//     } else {
+//       stringObj[string[i]]++;
+//     }
+//   }
+//   console.log(stringObj); // {s: 3, t: 1, r: 1, e: 1}
+
+//   let arrTemp = Object.entries(stringObj).filter((el) => el[1] === 1);
+//   console.log(arrTemp); // [Array(2), Array(2), Array(2)]
+
+//   if (arrTemp.length === 0) {
+//     return "";
+//   }
+
+//   let sortedIndexes = arrTemp
+//     .map((el) => string.indexOf(el[0]))
+//     .sort((a, b) => a - b);
+//   console.log(sortedIndexes); //  [1, 2, 3]
+
+//   return str[sortedIndexes[0]];
+// };
+
+// console.log(firstNonRepeatingLetter("sTreSS"));
+// console.log(firstNonRepeatingLetter("moomen"));
+// console.log(firstNonRepeatingLetter("a"));
+// console.log(firstNonRepeatingLetter("aabbcc"));
+
+// console.log(firstNonRepeatingLetter("moom"));
+
+// ---------------------------------------------------------
+// Weight for weight
+// My friend John and I are members of the "Fat to Fit Club (FFC)". John is worried because each month a list with the weights of members is published and each month he is the last on the list which means he is the heaviest.
+
+// I am the one who establishes the list so I told him: "Don't worry any more, I will modify the order of the list". It was decided to attribute a "weight" to numbers. The weight of a number will be from now on the sum of its digits.
+
+// For example 99 will have "weight" 18, 100 will have "weight" 1 so in the list 100 will come before 99.
+
+// Given a string with the weights of FFC members in normal order can you give this string ordered by "weights" of these numbers?
+// Example:
+
+// "56 65 74 100 99 68 86 180 90" ordered by numbers weights becomes:
+
+// "100 180 90 56 65 74 68 86 99"
+
+// When two numbers have the same "weight", let us class them as if they were strings (alphabetical ordering) and not numbers:
+
+// 180 is before 90 since, having the same "weight" (9), it comes before as a string.
+
+// All numbers in the list are positive numbers and the list can be empty.
+// Notes
+
+//     it may happen that the input string have leading, trailing whitespaces and more than a unique whitespace between two consecutive numbers
+
+// nie przechodzi testów
+// const orderWeight = (str) => {
+//   let arr = str.split(" ");
+//   console.log(arr);
+
+//   const countWeight = (str) => {
+//     return str.split("").reduce((a, b) => Number(a) + Number(b));
+//   };
+
+//   let objWeights = {};
+
+//   arr.forEach((el, i) => {
+//     objWeights[arr[i]] = countWeight(arr[i]);
+//   });
+//   console.log("objWeights", objWeights);
+
+//   const arrWeights = Object.entries(objWeights);
+//   console.log("arrWeights", arrWeights);
+
+//   if (arr.length !== arrWeights.length) {
+//     for (let i = 0; i < arr.length; i++) {
+//       if (arr[i] === arr[i + 1]) {
+//         arrWeights.push([arr[i], countWeight(arr[i])]);
+//       }
+//     }
+//   }
+//   console.log("arrWeights", arrWeights);
+
+//   let result = arrWeights
+//     .sort()
+//     .sort((a, b) => a[1] - b[1])
+//     .map((el) => el[0])
+//     .join(" ");
+//   console.log("result", result);
+
+//   return result;
+// };
+
+// // console.log(orderWeight("103 123 4444 99 2000"));
+// console.log(orderWeight("2000 10003 1234000 44444444 9999 11 11 22 123"));
+
+// ---------------------------------------------------------
+// Scramblies
+
+// Complete the function scramble(str1, str2) that returns true if a portion of str1 characters can be rearranged to match str2, otherwise returns false.
+
+// Notes:
+// Only lower case letters will be used (a-z). No punctuation or digits will be included.
+//  Performance needs to be considered.
+
+// Examples
+// scramble('rkqodlw', 'world') ==> True
+// scramble('cedewaraaossoqqyt', 'codewars') ==> True
+// scramble('katas', 'steak') ==> False
+
+const scramble = (str1, str2) => {
+  const str1Arr = str1.split("").sort();
+  const str2Arr = str2.split("").sort();
+
+  for (let i = 0; i < str2Arr.length; i++) {
+    if (str1Arr.includes(str2Arr[i])) {
+      let index = str1Arr.indexOf(str2Arr[i]);
+      str1Arr.splice(index, 1);
+      str2Arr.splice(i, 1);
+      i--;
+    }
+  }
+  return str2Arr.length === 0 ? true : false;
+};
+
+console.log(scramble("rkqodlw", "world")); // true // ok
+console.log(scramble("cedewaraaossoqqyt", "codewars")); // true // ok
+console.log(scramble("katas", "steak")); // false // ok
+console.log(scramble("scriptjavx", "javascript")); // false // ok
+
 // -------------------------- codewars 4kyu -------------------------------
 
 // Human readable duration format
@@ -625,54 +774,3 @@
 //     19, 20,
 //   ])
 // );
-
-// ---------------------------------------------------------
-
-// First non-repeating character
-// Write a function named first_non_repeating_letter that takes a string input, and returns the first character that is not repeated anywhere in the string.
-
-// For example, if given the input 'stress', the function should return 't', since the letter t only occurs once in the string, and occurs first in the string.
-
-// As an added challenge, upper- and lowercase letters are considered the same character, but the function should return the correct case for the initial letter. For example, the input 'sTreSS' should return 'T'.
-
-// If a string contains all repeating characters, it should return an empty string ("") or None -- see sample tests.
-
-const firstNonRepeatingLetter = (str) => {
-  if (str.length === 1) {
-    return str;
-  }
-
-  let string = str.toLowerCase();
-  let stringObj = {};
-
-  for (let i = 0; i < string.length; i++) {
-    if (!stringObj[string[i]]) {
-      stringObj[string[i]] = 1;
-    } else {
-      stringObj[string[i]]++;
-    }
-  }
-
-  console.log(stringObj);
-
-  let arrTemp = Object.entries(stringObj).filter((el) => el[1] === 1);
-  console.log(arrTemp);
-
-  if (arrTemp.length === 0) {
-    return "";
-  }
-
-  let sortedIndexes = arrTemp
-    .map((el) => string.indexOf(el[0]))
-    .sort((a, b) => a - b);
-  console.log(sortedIndexes);
-
-  return str[sortedIndexes[0]];
-};
-
-console.log(firstNonRepeatingLetter("sTreSS"));
-// console.log(firstNonRepeatingLetter("moomen"));
-// console.log(firstNonRepeatingLetter("a"));
-// console.log(firstNonRepeatingLetter("aabbcc"));
-
-// console.log(firstNonRepeatingLetter("moom"));
