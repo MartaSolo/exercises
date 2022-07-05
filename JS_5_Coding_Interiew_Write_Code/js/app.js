@@ -736,5 +736,21 @@
 // console.log(isInteger(2.9));
 
 // ----------------------------------------
+
+// [1,1,2,2,3] gdzie jedynki i dwójki mają parę a liczba 3 jest bez pary. To tylko przykład, może być tez coś takiego [1,1,2,3,4,4] gdzie dwójka i trójka nie ma pary.
+
+const findUnique = (array) => {
+  let obj = {};
+  array.forEach((el) => (!obj[el] ? (obj[el] = 1) : obj[el]++));
+  let arr2D = Object.entries(obj).filter((el) => el[1] === 1);
+  let result = arr2D.map((el) => el[0]);
+  return result;
+};
+
+// console.log(findUnique([1, 1, 2, 2, 3]));
+// console.log(findUnique([1, 1, 2, 3, 4, 4]));
+console.log(findUnique([4, 4, 1, 1, 2, 3]));
+console.log(findUnique([4, 4, 1, 1, 2, 3, 5, 6, 6, 93, 11, 2, 2]));
+
 // ----------------------------------------
 // ----------------------------------------

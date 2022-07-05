@@ -637,27 +637,87 @@
 // scramble('cedewaraaossoqqyt', 'codewars') ==> True
 // scramble('katas', 'steak') ==> False
 
-const scramble = (str1, str2) => {
-  const str1Arr = str1.split("").sort();
-  const str2Arr = str2.split("").sort();
+// const scramble = (str1, str2) => {
+//   const str1Arr = str1.split("");
+//   const str2Arr = str2.split("");
+//   // const str1Arr = str1.split("").sort();
+//   // const str2Arr = str2.split("").sort();
 
-  for (let i = 0; i < str2Arr.length; i++) {
-    if (str1Arr.includes(str2Arr[i])) {
-      let index = str1Arr.indexOf(str2Arr[i]);
-      str1Arr.splice(index, 1);
-      str2Arr.splice(i, 1);
-      i--;
-    }
+//   for (let i = 0; i < str2Arr.length; i++) {
+//     if (str1Arr.includes(str2Arr[i])) {
+//       let index = str1Arr.indexOf(str2Arr[i]);
+//       str1Arr.splice(index, 1);
+//       str2Arr.splice(i, 1);
+//       i--;
+//     } else {
+//       break;
+//     }
+//   }
+//   return str2Arr.length === 0 ? true : false;
+// };
+
+// console.log(scramble("rkqodlw", "world")); // true // ok
+// console.log(scramble("cedewaraaossoqqyt", "codewars")); // true // ok
+// console.log(scramble("katas", "steak")); // false // ok
+// console.log(scramble("scriptjavx", "javascript")); // false // ok
+// console.log(scramble("aabbcamaomsccdd", "commas")); // true // ok
+
+// ---------------------------------------------------------
+
+// String incrementer
+// Your job is to write a function which increments a string, to create a new string.
+//     If the string already ends with a number, the number should be incremented by 1.
+//     If the string does not end with a number. the number 1 should be appended to the new string.
+
+// Examples:
+// foo -> foo1
+// foobar23 -> foobar24
+// foo0042 -> foo0043
+// foo9 -> foo10
+// foo099 -> foo100
+
+// Attention: If the number has leading zeros the amount of digits should be considered.
+
+const incrementString = (string) => {
+  let arr = string.split("");
+  // console.log(arr);
+
+  let lastIndex = arr.length - 1;
+
+  if (isNaN(Number(arr[lastIndex]))) {
+    console.log(arr);
+    arr.push(1);
   }
-  return str2Arr.length === 0 ? true : false;
+
+  if (Number(arr[lastIndex]) < 9) {
+    arr[lastIndex] = (Number(arr[lastIndex]) + 1).toString();
+  }
+
+  if (Number(arr[lastIndex]) === 9) {
+    arr[lastIndex] = "0";
+    let i = 1;
+    while (Number(arr[lastIndex - i]) === 9) {
+      arr[lastIndex - i] = "0";
+      i++;
+    }
+    if (!isNaN(arr[lastIndex - i - 1])) {
+      arr[lastIndex - i - 1] = "1";
+    }
+    //  else {
+    //   arr.splice(lastIndex - 1, 1, 1); //
+    // }
+  }
+
+  return arr.join("");
 };
 
-console.log(scramble("rkqodlw", "world")); // true // ok
-console.log(scramble("cedewaraaossoqqyt", "codewars")); // true // ok
-console.log(scramble("katas", "steak")); // false // ok
-console.log(scramble("scriptjavx", "javascript")); // false // ok
+// console.log(incrementString("foo0042")); // foo0043
+// console.log(incrementString("foo"));
+console.log(incrementString("foo99"));
+// console.log(incrementString("foo000"));
+// console.log(incrementString("foo0999")); // foo1000
 
-// -------------------------- codewars 4kyu -------------------------------
+// -------------------------- codewars 4kyu ---------------------------
 
 // Human readable duration format
 
