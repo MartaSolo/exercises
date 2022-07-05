@@ -685,7 +685,6 @@ const incrementString = (string) => {
   let lastIndex = arr.length - 1;
 
   if (isNaN(Number(arr[lastIndex]))) {
-    console.log(arr);
     arr.push(1);
   }
 
@@ -700,21 +699,20 @@ const incrementString = (string) => {
       arr[lastIndex - i] = "0";
       i++;
     }
-    if (!isNaN(arr[lastIndex - i - 1])) {
-      arr[lastIndex - i - 1] = "1";
+    if (!isNaN(arr[lastIndex - i])) {
+      arr[lastIndex - i] = "1";
+    } else {
+      arr.splice(lastIndex - i + 1, null, 1);
     }
-    //  else {
-    //   arr.splice(lastIndex - 1, 1, 1); //
-    // }
   }
 
   return arr.join("");
 };
 
 // console.log(incrementString("foo0042")); // foo0043
-// console.log(incrementString("foo"));
-console.log(incrementString("foo99"));
-// console.log(incrementString("foo000"));
+console.log(incrementString("foo")); // foo1
+console.log(incrementString("foo99")); // foo100
+console.log(incrementString("foo000")); // foo001
 // console.log(incrementString("foo0999")); // foo1000
 
 // -------------------------- codewars 4kyu ---------------------------
