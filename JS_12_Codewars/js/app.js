@@ -678,41 +678,39 @@
 
 // Attention: If the number has leading zeros the amount of digits should be considered.
 
-const incrementString = (string) => {
-  let arr = string.split("");
-  // console.log(arr);
+// const incrementString = (string) => {
+//   let arr = string.split("");
+//   let lastIndex = arr.length - 1;
 
-  let lastIndex = arr.length - 1;
+//   if (isNaN(Number(arr[lastIndex]))) {
+//     arr.push(1);
+//   }
 
-  if (isNaN(Number(arr[lastIndex]))) {
-    arr.push(1);
-  }
+//   if (Number(arr[lastIndex]) < 9) {
+//     arr[lastIndex] = (Number(arr[lastIndex]) + 1).toString();
+//   }
 
-  if (Number(arr[lastIndex]) < 9) {
-    arr[lastIndex] = (Number(arr[lastIndex]) + 1).toString();
-  }
+//   if (Number(arr[lastIndex]) === 9) {
+//     arr[lastIndex] = "0";
+//     let i = 1;
+//     while (Number(arr[lastIndex - i]) === 9) {
+//       arr[lastIndex - i] = "0";
+//       i++;
+//     }
+//     if (!isNaN(arr[lastIndex - i])) {
+//       arr[lastIndex - i] = "1";
+//     } else {
+//       arr.splice(lastIndex - i + 1, null, 1);
+//     }
+//   }
 
-  if (Number(arr[lastIndex]) === 9) {
-    arr[lastIndex] = "0";
-    let i = 1;
-    while (Number(arr[lastIndex - i]) === 9) {
-      arr[lastIndex - i] = "0";
-      i++;
-    }
-    if (!isNaN(arr[lastIndex - i])) {
-      arr[lastIndex - i] = "1";
-    } else {
-      arr.splice(lastIndex - i + 1, null, 1);
-    }
-  }
-
-  return arr.join("");
-};
+//   return arr.join("");
+// };
 
 // console.log(incrementString("foo0042")); // foo0043
-console.log(incrementString("foo")); // foo1
-console.log(incrementString("foo99")); // foo100
-console.log(incrementString("foo000")); // foo001
+// console.log(incrementString("foo")); // foo1
+// console.log(incrementString("foo99")); // foo100
+// console.log(incrementString("foo000")); // foo001
 // console.log(incrementString("foo0999")); // foo1000
 
 // -------------------------- codewars 4kyu ---------------------------

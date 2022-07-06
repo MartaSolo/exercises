@@ -1,5 +1,5 @@
 const path = require("path");
-const entryPath = "JS_12_Codewars";
+const entryPath = "JS_13_This_arrowFn";
 
 module.exports = {
   entry: `./${entryPath}/js/app.js`,
