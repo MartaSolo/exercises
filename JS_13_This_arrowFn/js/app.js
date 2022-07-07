@@ -62,3 +62,12 @@ const person = {
 
 person.printAction();
 // John eats   // John sleeps   // John walks
+
+// ---------------------------------------------
+// destructuring
+
+// array
+const arr = [1, 2, 3, 4];
+
+[arr[0], arr[arr.length - 1]] = [arr[arr.length - 1], arr[0]];
+console.log(arr); // [4, 2, 3, 1]
