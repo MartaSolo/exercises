@@ -208,21 +208,73 @@
 // const sumNestedArr = (array2D) => {
 //   return array2D.flat().reduce((acc, curr) => acc + curr);
 // };
-const sumNestedArr = (array2D) => {
-  const arr = array2D.flat();
-  console.log(arr);
-  let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-    sum += arr[i];
-  }
-  return sum;
-};
+// const sumNestedArr = (array2D) => {
+//   const arr = array2D.flat();
+//   console.log(arr);
+//   let sum = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     sum += arr[i];
+//   }
+//   return sum;
+// };
 
-console.log(sumNestedArr([[1, 2, 3], [4], [3, 4, 5], [9]]));
+// console.log(sumNestedArr([[1, 2, 3], [4], [3, 4, 5], [9]]));
 
 // -------------------------------------------------
+
+// Lucky SubmitEventfunction takes an array and returns true if there are any three consecutive numbers sum to 7.
+
+// const luckySeven = (array) => {
+//   for (let i = 0; i < array.length; i++) {
+//     return array[i] + array[i + 1] + array[i + 2] === 7 ? true : false;
+//   }
+// };
+
+// const luckySeven = (arr) => {
+//   let result = "";
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] + arr[i + 1] + arr[i + 2] === 7) {
+//       result = true;
+//       break;
+//     } else {
+//       result = false;
+//     }
+//   }
+//   return result;
+// };
+
+// console.log(luckySeven([1, 2, 4, 4, 0, 5]));
+// console.log(luckySeven([1, 2, 3, 5, 6, 1, 2, 4]));
+// console.log(luckySeven([1, 2, 3, 5, 6, 1, 2]));
+
 // -------------------------------------------------
+
+// Given a string reverse each word in the sentence.
+
+// const reverseString = (string) => {
+//   return string.split("").reverse().join("");
+// };
+
+// console.log(reverseString("Welcome to the jungle")); //  elgnuj eht ot emocleW
+
 // -------------------------------------------------
+
+// Give an example of a callback function
+
+// const filterArray = (array, callback) => {
+//   let result = [];
+//   array.forEach((el) => {
+//     if (callback(el)) {
+//       result.push(el);
+//     }
+//   });
+//   return result;
+// };
+
+// const isEven = (number) => number % 2 === 0;
+
+// console.log(filterArray([1, 2, 3, 4, 5, 6, 7, 8], isEven));
+
 // -------------------------------------------------
 // -------------------------------------------------
 // -------------------------------------------------
