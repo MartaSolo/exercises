@@ -1,5 +1,5 @@
 const path = require("path");
-const entryPath = "JS_13_This_arrowFn";
+const entryPath = "JS_14_Interview_rep";
 
 module.exports = {
   entry: `./${entryPath}/js/app.js`,
