@@ -276,9 +276,88 @@
 // console.log(filterArray([1, 2, 3, 4, 5, 6, 7, 8], isEven));
 
 // -------------------------------------------------
+
+// Find missing in an array of consecutive numbers and return it
+
+// const findMissing = (array) => {
+//   const min = Math.min(...array);
+//   const max = Math.max(...array);
+//   let missing = "";
+//   for (let i = min; i <= max; i++) {
+//     if (!array.includes(i)) {
+//       missing = i;
+//     }
+//   }
+//   return missing;
+// };
+
+// console.log(findMissing([1, 2, 3, 5, 6, 7, 8, 9]));
+// console.log(findMissing([1, 2, 3, 4, 5, 6, 7, 9]));
+
 // -------------------------------------------------
+
+// Remove duplictaes in array and return unique array
+
+// const removeDuplicates = (array) => {
+//   const obj = {};
+//   array.forEach((el) => (obj[el] ? obj[el]++ : (obj[el] = 1)));
+//   const arrUnique = Object.entries(obj).map((el) => el[0]);
+//   return arrUnique;
+// };
+
+// console.log(removeDuplicates([1, 2, 3, 3, 4, 5, 5, 6, 7, 8, 8, 9])); // ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 // -------------------------------------------------
+// Two sum
+// Given an array of integers and a target number , return indices of the two numbers that add up to target.
+
+// const twoSum = (array, target) => {
+//   let result = [];
+//   for (let i = 0; i < array.length; i++) {
+//     for (let j = 1; j < array.length; j++) {
+//       if (array[i] + array[j] === target) {
+//         result.push(i);
+//         result.push(j);
+//       }
+//     }
+//   }
+//   return result.slice(0, 2);
+// };
+
+// console.log(twoSum([3, 2, 4, 5, 7, 8], 5)); // [0, 1];
+// console.log(twoSum([5, 2, 4, 1, 7, 9], 12)); // [0,4]
+// console.log(twoSum([5, 3, 4, 1, 7, 9], 11)); // [2,4]
+
 // -------------------------------------------------
+// Determin overlaping numbers in ranges
+
+const overlappingRanges = (array) => {
+  const firstRange = [];
+  const secondRange = [];
+  const overlapping = [];
+
+  for (let i = array[0]; i <= array[1]; i++) {
+    firstRange.push(i);
+  }
+  for (let i = array[2]; i <= array[3]; i++) {
+    secondRange.push(i);
+  }
+
+  //   firstRange.forEach((el, i, array) => {
+  firstRange.forEach((el) => {
+    if (secondRange.includes(el)) {
+      overlapping.push(el);
+    }
+  });
+  console.log(firstRange);
+  console.log(secondRange);
+  console.log(overlapping);
+
+  return overlapping.length >= array[4] ? true : false;
+};
+
+console.log(overlappingRanges([10, 20, 4, 14, 4]));
+console.log(overlappingRanges([10, 20, 4, 12, 4]));
+
 // -------------------------------------------------
 // -------------------------------------------------
 // -------------------------------------------------
