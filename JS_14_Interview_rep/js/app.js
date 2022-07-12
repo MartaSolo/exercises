@@ -330,35 +330,48 @@
 // -------------------------------------------------
 // Determin overlaping numbers in ranges
 
-const overlappingRanges = (array) => {
-  const firstRange = [];
-  const secondRange = [];
-  const overlapping = [];
+// const overlappingRanges = (array) => {
+//   const firstRange = [];
+//   const secondRange = [];
+//   const overlapping = [];
 
-  for (let i = array[0]; i <= array[1]; i++) {
-    firstRange.push(i);
-  }
-  for (let i = array[2]; i <= array[3]; i++) {
-    secondRange.push(i);
-  }
+//   for (let i = array[0]; i <= array[1]; i++) {
+//     firstRange.push(i);
+//   }
+//   for (let i = array[2]; i <= array[3]; i++) {
+//     secondRange.push(i);
+//   }
 
-  //   firstRange.forEach((el, i, array) => {
-  firstRange.forEach((el) => {
-    if (secondRange.includes(el)) {
-      overlapping.push(el);
-    }
-  });
-  console.log(firstRange);
-  console.log(secondRange);
-  console.log(overlapping);
+//   //   firstRange.forEach((el, i, array) => {
+//   firstRange.forEach((el) => {
+//     if (secondRange.includes(el)) {
+//       overlapping.push(el);
+//     }
+//   });
+//   console.log(firstRange);
+//   console.log(secondRange);
+//   console.log(overlapping);
 
-  return overlapping.length >= array[4] ? true : false;
-};
+//   return overlapping.length >= array[4] ? true : false;
+// };
 
-console.log(overlappingRanges([10, 20, 4, 14, 4]));
-console.log(overlappingRanges([10, 20, 4, 12, 4]));
+// console.log(overlappingRanges([10, 20, 4, 14, 4]));
+// console.log(overlappingRanges([10, 20, 4, 12, 4]));
 
 // -------------------------------------------------
+
+// Call stack
+
+const addOne = (value) => value + 1;
+const addTwo = (value) => addOne(value + 1);
+const addThree = (value) => addTwo(value + 1);
+
+const calculation = () => {
+  return addThree(1) + addTwo(2);
+};
+
+console.log(calculation());
+
 // -------------------------------------------------
 // -------------------------------------------------
 // -------------------------------------------------
