@@ -747,3 +747,125 @@
 // console.log(add(10)(20)(30));
 
 // -----------------------------------------------
+
+// ----- Intermediate algorithm scripting -------------
+
+// Sum All Numbers in a Range
+
+// We'll pass you an array of two numbers. Return the sum of those two numbers plus the sum of all the numbers between them. The lowest number will not always come first.
+
+// For example, sumAll([4,1]) should return 10 because sum of all the numbers between 1 and 4 (both inclusive) is 10.
+
+// function sumAll(arr) {
+//   const sortedArr = arr.sort((a, b) => a - b);
+//   const numbers = [];
+//   for (let i = sortedArr[0]; i <= sortedArr[1]; i++) {
+//     numbers.push(i);
+//   }
+//   return numbers.reduce((acc, curr) => acc + curr);
+// }
+
+// console.log(sumAll([1, 4]));
+
+// -----------------------------------------------
+
+// Diff Two Arrays
+
+// Compare two arrays and return a new array with any items only found in one of the two given arrays, but not both. In other words, return the symmetric difference of the two arrays.
+
+// Note: You can return the array with its elements in any order.
+
+// version 1
+
+// function diffArray(arr1, arr2) {
+//   const newArr = [...arr1, ...arr2];
+//   let result = [];
+//   newArr.forEach((el, i, arr) => {
+//     if (arr.indexOf(el) === arr.lastIndexOf(el)) {
+//       result.push(el);
+//     }
+//   });
+//   return result;
+// }
+
+// version 2
+// function diffArray(arr1, arr2) {
+//   const newArr = [...arr1, ...arr2];
+//   const obj = {};
+//   newArr.forEach((el) => (!obj[el] ? (obj[el] = 1) : obj[el]++));
+//   const diff = Object.entries(obj).filter((el) => el[1] === 1);
+//   const result = diff.map((el) => Number(el[0]));
+//   return result;
+// }
+
+// console.log(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]));
+
+// -----------------------------------------------
+
+// Seek and Destroy
+
+// You will be provided with an initial array (the first argument in the destroyer function), followed by one or more arguments. Remove all elements from the initial array that are of the same value as these arguments.
+
+// Note: You have to use the arguments object.
+
+// function destroyer(arr, ...args) {
+//   for (let i = 0; i < arr.length; i++) {
+//     for (let j = 0; j < args.length; j++) {
+//       if (arr[i] === args[j]) {
+//         let index = arr.indexOf(arr[i]);
+//         arr.splice(index, 1);
+//         i--;
+//       }
+//     }
+//   }
+//   return arr;
+// }
+
+// console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3)); // [1,1]
+
+// -----------------------------------------------
+
+// Wherefore art thou
+
+// Make a function that looks through an array of objects (first argument) and returns an array of all objects that have matching name and value pairs (second argument). Each name and value pair of the source object has to be present in the object from the collection if it is to be included in the returned array.
+
+// For example, if the first argument is
+// [{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }],
+// and the second argument is { last: "Capulet" },
+// then you must return the third object from the array (the first argument), because it contains the name and its value, that was passed on as the second argument.
+
+function whatIsInAName(collection, source) {
+  const sourceKeys = Object.keys(source);
+
+  // filter the collection
+  let arr = collection.filter((obj) => {
+    for (let i = 0; i < sourceKeys.length; i++) {
+      if (
+        !obj.hasOwnProperty(sourceKeys[i]) ||
+        obj[sourceKeys[i]] !== source[sourceKeys[i]]
+      ) {
+        return false;
+      }
+    }
+    return true;
+  });
+  return arr;
+}
+
+console.log(
+  whatIsInAName(
+    [
+      { first: "Romeo", last: "Montague" },
+      { first: "Mercutio", last: null },
+      { first: "Tybalt", last: "Capulet" },
+    ],
+    { last: "Capulet" }
+  )
+); // [{first: 'Tybalt', last: 'Capulet'}]
+
+console.log(
+  whatIsInAName(
+    [{ apple: 1, bat: 2 }, { apple: 1 }, { apple: 1, bat: 2, cookie: 2 }],
+    { apple: 1, cookie: 2 }
+  )
+); // [{ "apple": 1, "bat": 2, "cookie": 2 }].);
