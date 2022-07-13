@@ -1,36 +1,39 @@
 import React, { useState } from "react";
 
-// version 1
-// const Child = ({ handleTextChange }) => {
-//   const [inputText, setInputText] = useState("");
+// first option - passing the function with a setter state function
 
-//   const handleOnChange = (e) => {
+// const Child = ({ changeText }) => {
+//   const [inputText, setInputText] = useState("");
+//   const handleChange = (e) => {
 //     setInputText(e.target.value);
-//     if (typeof handleTextChange === "function") {
-//       handleTextChange(e.target.value);
+//     if (typeof changeText === "function") {
+//       changeText(e.target.value);
 //     }
 //   };
 
 //   return (
-//     <div>
-//       <input value={inputText} onChange={handleOnChange} />
-//     </div>
+//     <>
+//       <input type="text" value={inputText} onChange={handleChange} />
+//     </>
 //   );
 // };
 
-// version 2
+// -----------------------------------------
+
+// second option - passing the setter state function
+
 const Child = ({ setText }) => {
   const [inputText, setInputText] = useState("");
 
-  const handleOnChange = (e) => {
+  const handleChange = (e) => {
     setInputText(e.target.value);
     setText(e.target.value);
   };
 
   return (
-    <div>
-      <input value={inputText} onChange={handleOnChange} />
-    </div>
+    <>
+      <input type="text" value={inputText} onChange={handleChange} />
+    </>
   );
 };
 

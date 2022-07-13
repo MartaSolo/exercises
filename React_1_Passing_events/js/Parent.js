@@ -1,31 +1,34 @@
 import React, { useState } from "react";
 import Child from "./Child";
 
-// version 1
-// const Parent = () => {
+// first option - passing the function with a setter state function
+// const Parnet = () => {
 //   const [text, setText] = useState("Hello World");
 
-//   const handleTextChange = (newText) => {
-//     setText(newText);
+//   const changeText = (userText) => {
+//     setText(userText);
 //   };
 //   return (
-//     <div>
+//     <>
 //       <p>{text}</p>
-//       <Child handleTextChange={handleTextChange} />
-//     </div>
+//       <Child changeText={changeText} />
+//     </>
 //   );
 // };
 
-// version 2
-const Parent = () => {
+// -----------------------------------------
+
+// second option - passing the setter state function
+
+const Parnet = () => {
   const [text, setText] = useState("Hello World");
 
   return (
-    <div>
+    <>
       <p>{text}</p>
       <Child setText={setText} />
-    </div>
+    </>
   );
 };
 
-export default Parent;
+export default Parnet;
