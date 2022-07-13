@@ -406,3 +406,344 @@
 // console.log(filteredList);
 
 // -----------------------------------------------
+
+// Implement the filter Method on a Prototype
+
+// const s = [23, 65, 98, 5];
+
+// Array.prototype.myFilter = function (callback) {
+//   // Only change code below this line
+//   const newArray = [];
+//   for (let i = 0; i < this.length; i++) {
+//     if (callback(this[i])) {
+//       newArray.push(this[i]);
+//     }
+//   }
+//   // Only change code above this line
+//   return newArray;
+// };
+
+// const new_s = s.myFilter(function (item) {
+//   return item % 2 === 1;
+// });
+// console.log(new_s);
+
+// -----------------------------------------------
+
+// Return Part of an Array Using the slice Method
+// Use the slice method in the sliceArray function to return part of the anim array given the provided beginSlice and endSlice indices. The function should return an array.
+
+// function sliceArray(anim, beginSlice, endSlice) {
+//   return anim.slice(beginSlice, endSlice);
+// }
+
+// const inputAnim = ["Cat", "Dog", "Tiger", "Zebra", "Ant"];
+// console.log(sliceArray(inputAnim, 1, 3));
+
+// -----------------------------------------------
+
+// Remove Elements from an Array Using slice Instead of splice
+
+// Rewrite the function nonMutatingSplice by using slice instead of splice. It should limit the provided cities array to a length of 3 (3 first elements), and return a new array with only the first three items.
+
+// Do not mutate the original array provided to the function.
+
+// function nonMutatingSplice(cities) {
+//   const arr = cities.slice(0, 3);
+//   return arr;
+// }
+
+// const inputCities = ["Chicago", "Delhi", "Islamabad", "London", "Berlin"];
+// console.log(nonMutatingSplice(inputCities));
+
+// -----------------------------------------------
+
+// Combine Two Arrays Using the concat Method
+
+// Use the concat method in the nonMutatingConcat function to concatenate attach to the end of original. The function should return the concatenated array.
+
+// function nonMutatingConcat(original, attach) {
+//   return original.concat(attach);
+// }
+
+// const first = [1, 2, 3];
+// const second = [4, 5];
+// console.log(nonMutatingConcat(first, second)); // [1, 2, 3, 4, 5]
+
+// -----------------------------------------------
+// Add Elements to the End of an Array Using concat Instead of push
+
+// Change the nonMutatingPush function so it uses concat to add newItem to the end of original instead of push. The function should return an array.
+
+// function nonMutatingPush(original, newItem) {
+//   return original.concat(newItem);
+// }
+
+// const first = [1, 2, 3];
+// const second = [4, 5];
+
+// console.log(nonMutatingPush(first, second));
+
+// -----------------------------------------------
+
+// Use the reduce Method to Analyze Data
+
+// The global variable
+// const watchList = [
+//   {
+//     Title: "Inception",
+//     Year: "2010",
+//     Rated: "PG-13",
+//     Released: "16 Jul 2010",
+//     Runtime: "148 min",
+//     Genre: "Action, Adventure, Crime",
+//     Director: "Christopher Nolan",
+//     Writer: "Christopher Nolan",
+//     Actors: "Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page, Tom Hardy",
+//     Plot: "A thief, who steals corporate secrets through use of dream-sharing technology, is given the inverse task of planting an idea into the mind of a CEO.",
+//     Language: "English, Japanese, French",
+//     Country: "USA, UK",
+//     Awards: "Won 4 Oscars. Another 143 wins & 198 nominations.",
+//     Poster:
+//       "http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+//     Metascore: "74",
+//     imdbRating: "8.8",
+//     imdbVotes: "1,446,708",
+//     imdbID: "tt1375666",
+//     Type: "movie",
+//     Response: "True",
+//   },
+//   {
+//     Title: "Interstellar",
+//     Year: "2014",
+//     Rated: "PG-13",
+//     Released: "07 Nov 2014",
+//     Runtime: "169 min",
+//     Genre: "Adventure, Drama, Sci-Fi",
+//     Director: "Christopher Nolan",
+//     Writer: "Jonathan Nolan, Christopher Nolan",
+//     Actors: "Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow",
+//     Plot: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+//     Language: "English",
+//     Country: "USA, UK",
+//     Awards: "Won 1 Oscar. Another 39 wins & 132 nominations.",
+//     Poster:
+//       "http://ia.media-imdb.com/images/M/MV5BMjIxNTU4MzY4MF5BMl5BanBnXkFtZTgwMzM4ODI3MjE@._V1_SX300.jpg",
+//     Metascore: "74",
+//     imdbRating: "8.6",
+//     imdbVotes: "910,366",
+//     imdbID: "tt0816692",
+//     Type: "movie",
+//     Response: "True",
+//   },
+//   {
+//     Title: "The Dark Knight",
+//     Year: "2008",
+//     Rated: "PG-13",
+//     Released: "18 Jul 2008",
+//     Runtime: "152 min",
+//     Genre: "Action, Adventure, Crime",
+//     Director: "Christopher Nolan",
+//     Writer:
+//       "Jonathan Nolan (screenplay), Christopher Nolan (screenplay), Christopher Nolan (story), David S. Goyer (story), Bob Kane (characters)",
+//     Actors: "Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine",
+//     Plot: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.",
+//     Language: "English, Mandarin",
+//     Country: "USA, UK",
+//     Awards: "Won 2 Oscars. Another 146 wins & 142 nominations.",
+//     Poster:
+//       "http://ia.media-imdb.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+//     Metascore: "82",
+//     imdbRating: "9.0",
+//     imdbVotes: "1,652,832",
+//     imdbID: "tt0468569",
+//     Type: "movie",
+//     Response: "True",
+//   },
+//   {
+//     Title: "Batman Begins",
+//     Year: "2005",
+//     Rated: "PG-13",
+//     Released: "15 Jun 2005",
+//     Runtime: "140 min",
+//     Genre: "Action, Adventure",
+//     Director: "Christopher Nolan",
+//     Writer:
+//       "Bob Kane (characters), David S. Goyer (story), Christopher Nolan (screenplay), David S. Goyer (screenplay)",
+//     Actors: "Christian Bale, Michael Caine, Liam Neeson, Katie Holmes",
+//     Plot: "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from the corruption that Scarecrow and the League of Shadows have cast upon it.",
+//     Language: "English, Urdu, Mandarin",
+//     Country: "USA, UK",
+//     Awards: "Nominated for 1 Oscar. Another 15 wins & 66 nominations.",
+//     Poster:
+//       "http://ia.media-imdb.com/images/M/MV5BNTM3OTc0MzM2OV5BMl5BanBnXkFtZTYwNzUwMTI3._V1_SX300.jpg",
+//     Metascore: "70",
+//     imdbRating: "8.3",
+//     imdbVotes: "972,584",
+//     imdbID: "tt0372784",
+//     Type: "movie",
+//     Response: "True",
+//   },
+//   {
+//     Title: "Avatar",
+//     Year: "2009",
+//     Rated: "PG-13",
+//     Released: "18 Dec 2009",
+//     Runtime: "162 min",
+//     Genre: "Action, Adventure, Fantasy",
+//     Director: "James Cameron",
+//     Writer: "James Cameron",
+//     Actors: "Sam Worthington, Zoe Saldana, Sigourney Weaver, Stephen Lang",
+//     Plot: "A paraplegic marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+//     Language: "English, Spanish",
+//     Country: "USA, UK",
+//     Awards: "Won 3 Oscars. Another 80 wins & 121 nominations.",
+//     Poster:
+//       "http://ia.media-imdb.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg",
+//     Metascore: "83",
+//     imdbRating: "7.9",
+//     imdbVotes: "876,575",
+//     imdbID: "tt0499549",
+//     Type: "movie",
+//     Response: "True",
+//   },
+// ];
+
+// The variable watchList holds an array of objects with information on several movies.
+// Use reduce to find the average IMDB rating of the movies directed by Christopher Nolan.
+// Recall from prior challenges how to filter data and map over it to pull what you need. You may need to create other variables, and return the average rating from getRating function. Note that the rating values are saved as strings in the object and need to be converted into numbers before they are used in any mathematical operations.
+
+// function getRating(watchList) {
+//   let averageRating;
+//   const arr = watchList.filter(
+//     (listItem) => listItem.Director === "Christopher Nolan"
+//   );
+//   console.log(arr);
+//   let sum = arr.reduce((acc, curr) => {
+//     return acc + Number(curr.imdbRating);
+//   }, 0);
+//   averageRating = sum / arr.length;
+//   return averageRating;
+// }
+
+// console.log(getRating(watchList));
+
+// -----------------------------------------------
+
+// Use Higher-Order Functions map, filter, or reduce to Solve a Complex Problem
+
+// Complete the code for the squareList function using any combination of map(), filter(), and reduce(). The function should return a new array containing the squares of only the positive integers (decimal numbers are not integers) when an array of real numbers is passed to it. An example of an array of real numbers is [-3, 4.8, 5, 3, -3.2].
+
+// Note: Your function should not use any kind of for or while loops or the forEach() function.
+
+// const squareList = (arr) => {
+//   const filteredArr = arr.filter((el) => {
+//     return el > 0 && Number.isInteger(el);
+//   });
+//   const result = filteredArr.map((el) => Math.pow(el, 2));
+//   return result;
+// };
+
+// const squaredIntegers = squareList([-3, 4.8, 5, 3, -3.2]);
+// console.log(squaredIntegers);
+
+// -----------------------------------------------
+// Sort an Array Alphabetically using the sort Method
+
+// function alphabeticalOrder(arr) {
+//   return arr.sort((a, b) => a.localeCompare(b));
+// }
+
+// console.log(alphabeticalOrder(["a", "d", "c", "a", "z", "g"]));
+
+// -----------------------------------------------
+// Return a Sorted Array Without Changing the Original Array
+
+// Use the sort method in the nonMutatingSort function to sort the elements of an array in ascending order. The function should return a new array, and not mutate the globalArray variable.
+
+// const globalArray = [5, 6, 3, 2, 9];
+
+// function nonMutatingSort(arr) {
+//   return [...arr].sort((a, b) => a - b);
+// }
+
+// console.log(nonMutatingSort(globalArray));
+
+// -----------------------------------------------
+
+// Split a String into an Array Using the split Method
+
+// Use the split method inside the splitify function to split str into an array of words. The function should return the array. Note that the words are not always separated by spaces, and the array should not contain punctuation.
+
+// function splitify(str) {
+//   return str.split(/\W/);
+// }
+
+// console.log(splitify("Hello World,I-am code"));
+
+// -----------------------------------------------
+
+// Combine an Array into a String Using the join Method
+
+// Use the join method (among others) inside the sentensify function to make a sentence from the words in the string str. The function should return a string. For example, I-like-Star-Wars would be converted to I like Star Wars. For this challenge, do not use the replace method.
+
+// function sentensify(str) {
+//   return str.split(/\W/).join(" ");
+// }
+// console.log(sentensify("May-the-force-be-with-you"));
+
+// -----------------------------------------------
+// Apply Functional Programming to Convert Strings to URL Slugs
+
+// Fill in the urlSlug function so it converts a string title and returns the hyphenated version for the URL. You can use any of the methods covered in this section, and don't use replace. Here are the requirements:
+
+// The input is a string with spaces and title-cased words
+// The output is a string with the spaces between words replaced by a hyphen (-)
+// The output should be all lower-cased letters
+// The output should not have any spaces
+
+// function urlSlug(title) {
+//   const arr = title.toLowerCase().trim().split(" ");
+//   const filteredArr = arr.filter((el) => el !== "");
+//   return filteredArr.join("-");
+// }
+// console.log(urlSlug("A Mind Needs Books Like A Sword Needs A Whetstone"));
+// console.log(urlSlug(" Winter Is  Coming"));
+
+// -----------------------------------------------
+// Use the every Method to Check that Every Element in an Array Meets a Criteria
+
+// Use the every method inside the checkPositive function to check if every element in arr is positive. The function should return a Boolean value.
+
+// function checkPositive(arr) {
+//   return arr.every((el) => el > 0);
+// }
+// console.log(checkPositive([1, 2, 3, -4, 5]));
+
+// -----------------------------------------------
+
+// Use the some Method to Check that Any Elements in an Array Meet a Criteria
+// Use the some method inside the checkPositive function to check if any element in arr is positive. The function should return a Boolean value.
+
+// function checkPositive(arr) {
+//   return arr.some((el) => el > 0);
+// }
+
+// console.log(checkPositive([1, 2, 3, -4, 5]));
+
+// -----------------------------------------------
+// Introduction to Currying and Partial Application
+
+// Fill in the body of the add function so it uses currying to add parameters x, y, and z.
+
+// function add(x) {
+//   return (y) => {
+//     return (z) => {
+//       return x + y + z;
+//     };
+//   };
+// }
+
+// console.log(add(10)(20)(30));
+
+// -----------------------------------------------
