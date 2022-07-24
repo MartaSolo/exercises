@@ -1002,15 +1002,17 @@
 
 // Check the assertion tests for examples.
 
-function uniteUnique(...arr) {
-  const mergedArr = arr.flat(Infinity);
+// function uniteUnique(...arr) {
+//   const mergedArr = arr.flat(Infinity);
 
-  const uniqueArr = mergedArr.filter((el, index, array) => {
-    return array.indexOf(el) === index;
-  });
+//   const uniqueArr = mergedArr.filter((el, index, array) => {
+//     return array.indexOf(el) === index;
+//   });
 
-  return uniqueArr;
-}
+//   return uniqueArr;
+// }
 
-console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
-// [1, 3, 2, 5, 4]
+// console.log(uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]));
+// // [1, 3, 2, 5, 4]
+
+// -----------------------------------------------

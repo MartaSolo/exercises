@@ -1,5 +1,5 @@
 const path = require("path");
-const entryPath = "JS_15_FreeCodeCamp";
+const entryPath = "JS_5_Coding_Interiew_Write_Code";
 
 module.exports = {
   entry: `./${entryPath}/js/app.js`,

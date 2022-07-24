@@ -233,7 +233,7 @@
 // 8.Count Duplicate Values in an Array in JavaScript.
 // Count Duplicate Values in an Array in JavaScript
 
-// option 1
+// option 1.1
 // const countDuplicates = (array) => {
 //   let counts = {};
 //   array.forEach((el) => {
@@ -245,6 +245,17 @@
 // const values = ["a", "b", "a", "c", "b", "a", "d"];
 // console.log(countDuplicates(values));
 // // {a: 3, b: 2, c: 1, d: 1}
+
+// option 1.2
+// const countDuplicates = (array) => {
+//   let counts = {};
+//   array.forEach((el) => (counts[el] ? counts[el]++ : (counts[el] = 1)));
+//   return counts;
+// };
+
+// const values = ["a", "b", "a", "c", "b", "a", "d"];
+// console.log(countDuplicates(values));
+// {a: 3, b: 2, c: 1, d: 1}
 
 // option 2
 // const counter = (array) => {
@@ -276,9 +287,21 @@
 // {a: 3, b: 2, c: 1, d: 1}
 
 // ----------------------------------------
-
+// Count duplicates in string and return a string:
 // Mając string „aaabbccccdd” zwróć string „a3b2c4d2”.
+
+// version 1
+// const countStringDuplicates = (string) => {
+//   const obj = {};
+//   [...string].forEach((el) => (obj[el] ? obj[el]++ : (obj[el] = 1)));
+//   const arr = Object.entries(obj).flat();
+//   return arr.join("");
+// };
+
 // const text = "aaaabbcccd";
+// console.log(countStringDuplicates(text)); // a4b2c3d1
+
+// verion 2
 
 // const count = (string) => {
 //   const arr = [...string];
@@ -344,25 +367,24 @@
 // 13. String rotation
 // Find out if a string is a rotation of another string. E.g. ABCD is a rotation of BCDA but not ACBD.
 
-// // v1
-// const stringRotation = (string1, string2) => {
-//   if (string1.length !== string2.length) {
+// v1
+// const stringRotation = (str1, str2) => {
+//   if (str1.length !== str2.length) {
 //     return false;
 //   }
-//   const string1Rotated = string1.slice(1) + string1.slice(0, 1);
-//   if (string1Rotated === string2) {
-//     return true;
-//   } else {
-//     return false;
-//   }
+//   const str1Rotated = str1.substr(1) + str1.substr(0, 1);
+//   return str1Rotated === str2 ? true : false;
 // };
+
+// console.log(stringRotation("ABCD", "BCDA"));
 
 // // v2
 // const stringRotation = (string1, string2) => {
 //   if (string1.length !== string2.length) {
 //     return false;
 //   }
-//   if (string1.slice(1) + string1.slice(0, 1) === string2) {
+//   const string1Rotated = string1.slice(1) + string1.slice(0, 1);
+//   if (string1Rotated === string2) {
 //     return true;
 //   } else {
 //     return false;
@@ -737,20 +759,45 @@
 
 // ----------------------------------------
 
+// Find unique numbers in the array and return the array.
 // [1,1,2,2,3] gdzie jedynki i dwójki mają parę a liczba 3 jest bez pary. To tylko przykład, może być tez coś takiego [1,1,2,3,4,4] gdzie dwójka i trójka nie ma pary.
 
-const findUnique = (array) => {
-  let obj = {};
-  array.forEach((el) => (!obj[el] ? (obj[el] = 1) : obj[el]++));
-  let arr2D = Object.entries(obj).filter((el) => el[1] === 1);
-  let result = arr2D.map((el) => el[0]);
-  return result;
-};
+// version 1
+// const findUnique = (array) => {
+//   let obj = {};
+//   array.forEach((el) => (!obj[el] ? (obj[el] = 1) : obj[el]++));
+//   let arr2D = Object.entries(obj).filter((el) => el[1] === 1);
+//   let result = arr2D.map((el) => el[0]);
+//   return result;
+// };
 
 // console.log(findUnique([1, 1, 2, 2, 3]));
 // console.log(findUnique([1, 1, 2, 3, 4, 4]));
-console.log(findUnique([4, 4, 1, 1, 2, 3]));
-console.log(findUnique([4, 4, 1, 1, 2, 3, 5, 6, 6, 93, 11, 2, 2]));
+// console.log(findUnique([4, 4, 1, 1, 2, 3]));
+// console.log(findUnique([4, 4, 1, 1, 2, 3, 5, 6, 6, 93, 11, 2, 2]));
+
+// version 2
+
+// const findUnique = (array) => {
+//   const uniqueArr = array.filter((el, index, array) => {
+//     return array.indexOf(el) === index;
+//   });
+//   return uniqueArr;
+// };
 
 // ----------------------------------------
+
+// Find elements that are only one time in the array, that are not duplicated. Return an array of numbers that are not duplicated.
+
+// const removeDuplites = (array) => {
+//   const uniqueArr = array.filter((el, index, array) => {
+//     return array.indexOf(el) === array.lastIndexOf(el);
+//   });
+//   return uniqueArr;
+// };
+
+// console.log(removeDuplites([1, 1, 2, 2, 3])); // [3]
+// console.log(removeDuplites([1, 1, 2, 3, 4, 4])); // [2,3]
+// console.log(removeDuplites([4, 4, 1, 1, 2, 3])); // [2,3]
+// console.log(removeDuplites([4, 4, 1, 1, 2, 3, 5, 6, 6, 93, 11, 2, 2])); // [3, 5, 93, 11]
 // ----------------------------------------
